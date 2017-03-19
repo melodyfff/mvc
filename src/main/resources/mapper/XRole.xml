@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinchen.mvc.dao.RoleDao">
+    <select id="queryById" parameterType="long" resultType="XRole">
+        SELECT id ,role_name
+        FROM x_role
+        WHERE id = #{id}
+    </select>
+</mapper>
