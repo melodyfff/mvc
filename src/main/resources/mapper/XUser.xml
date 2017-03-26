@@ -21,9 +21,20 @@
         WHERE username = #{username}
     </select>
 
-    <select id="queryAll"  resultType="XUser">
+    <select id="queryAll" resultType="XUser">
         SELECT id ,username, password,role_id
         FROM x_user
     </select>
+    <select id="queryAllUser" resultType="UserList">
+      SELECT
+	a.username,
+	b.role_name
+    FROM
+        x_user AS a
+    INNER JOIN x_role AS b ON a.role_id = b.id
+    AND b.id != 1
 
+    </select>
+<!--    ORDER BY
+	role_name DESC-->
 </mapper>

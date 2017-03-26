@@ -31,11 +31,7 @@ public class GardenController {
     public String main(){
         return "garden/main";
     }
-    @RequestMapping("/login")
-    public ModelAndView login(){
-        ModelAndView mav = new ModelAndView("garden/login");
-        return mav;
-    }
+
     @RequestMapping("/hot")
     public String hot(){
         return "garden/hotfood";

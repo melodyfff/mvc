@@ -29,16 +29,35 @@
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </div>
                 <%--<div class="admin-side-full">--%>
-                    <%--<i class="fa fa-life-bouy" aria-hidden="false"></i>--%>
+                <%--<i class="fa fa-life-bouy" aria-hidden="false"></i>--%>
                 <%--</div>--%>
             </div>
             <ul class="layui-nav admin-header-item">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                        <cite>商品管理</cite>
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;" data-module-id="3">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <cite>会员管理</cite>
+                    </a>
+                </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <i class="fa fa-tv" aria-hidden="true"></i>
                         <cite>订单管理</cite>
                     </a>
                 </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="fa fa-gears" aria-hidden="true"></i>
+                        <cite>设置</cite>
+                    </a>
+                </li>
+
                 <li class="layui-nav-item">
                     <a href="javascript:;" class="admin-header-user">
                         <img src="${pageContext.request.contextPath}/layui/images/0.jpg"/>
@@ -59,7 +78,7 @@
                         </dd>
                         <dd>
                             <a href="${pageContext.request.contextPath}/login/main"><i class="fa fa-sign-out"
-                                                                                         aria-hidden="true"></i> 注销</a>
+                                                                                       aria-hidden="true"></i> 注销</a>
                         </dd>
                     </dl>
                 </li>
@@ -67,7 +86,7 @@
             <ul class="layui-nav admin-header-item-mobile">
                 <li class="layui-nav-item">
                     <a href="${pageContext.request.contextPath}/login/main"><i class="fa fa-sign-out"
-                                                                                 aria-hidden="true"></i> 注销</a>
+                                                                               aria-hidden="true"></i> 注销</a>
                 </li>
             </ul>
         </div>
@@ -80,11 +99,34 @@
             <ul class="layui-tab-title">
                 <li class="layui-this">
                     <i class="fa fa-dashboard" aria-hidden="true"></i>
-                    <cite>选餐面板</cite>
+                    <cite>控制台</cite>
                 </li>
             </ul>
             <div class="layui-tab-content" style="min-height: 150px; padding: 5px 0 0 0;">
 
+
+                <div class="layui-form">
+                    <table class="layui-table">
+                        <colgroup>
+                            <col width="50">
+                            <col width="150">
+                            <col width="150">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
+                            <th>用户名${pageInfo.size}</th>
+                        </tr>
+                        </thead>
+                        <tbody id="user_list">
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="demo8"></div>
             </div>
         </div>
     </div>
@@ -107,20 +149,69 @@
     <!--锁屏模板 end -->
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/layui/plugins/layui/layui.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/layui/datas/nav.js"></script>
-    <script src="${pageContext.request.contextPath}/layui/js/index.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/layui/datas/adminnav.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/js/admin.js"></script>
     <script>
-        layui.use('layer', function () {
+        layui.use(['layer', 'form','laypage'] ,function () {
+            var laypage = layui.laypage;
             var $ = layui.jquery,
-                layer = layui.layer;
+                form = layui.form()
+            ,layer = layui.layer;
 
             $('.layui-btn').on('click',function () {
                 layer.msg('hello');
             });
+
+            //全选
+            form.on('checkbox(allChoose)', function(data){
+                var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+                child.each(function(index, item){
+                    item.checked = data.elem.checked;
+                });
+                form.render('checkbox');
+            });
             //插入content
-            $.get("${pageContext.request.contextPath}/order/orderlist", function(data){
-                var qqq = $('.layui-tab-content');
-                qqq.append(data);
+            <%--$.get("${pageContext.request.contextPath}/order/orderlist", function(data){--%>
+                <%--var qqq = $('.layui-tab-content');--%>
+                <%--qqq.append(data);--%>
+            <%--});--%>
+            //调用分页
+
+
+            //渲染
+            var render = function(curr){
+                var result='';
+                $.get('${pageContext.request.contextPath}/admin/userList?curr='+curr,function (data) {
+
+                    //此处只是演示，实际场景通常是返回已经当前页已经分组好的数据
+                    console.log(data);
+                    var size = data.size;
+                    for(var i = 0; i < size; i++){
+                        var userName = data.list[i].userName;
+                        result += '<tr><td><input type="checkbox" name="" lay-skin="primary"></td><td>'+userName+'</td></tr>';
+                    }
+//                    console.log(result);
+//                    console.log(data);
+                    document.getElementById('user_list').innerHTML =result;
+                    console.log('进入分页');
+                    laypage({
+                        cont: 'demo8',
+                        curr: curr
+                        ,pages: data.pages //得到总页数
+                        ,jump: function(obj,first){
+                            console.log("first=="+first);
+                            if(!first){
+                                render(obj.curr);
+                            }
+                        }
+                    });
+                });
+
+
+            };
+
+            $(document).ready(function () {
+                render(1);
             });
 
         });

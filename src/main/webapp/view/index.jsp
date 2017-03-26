@@ -69,7 +69,7 @@
                 <h1 id="homeHeading">KMU外卖，为你献上最好的美食</h1>
                 <hr>
                 <p>做许多事情的捷径就是一次只做一件事，KMU外卖用心服务</p>
-                <a href="${pageContext.request.contextPath}/garden/world" class="btn btn-primary btn-xl page-scroll">开始点餐</a>
+                <a href="${pageContext.request.contextPath}/login/main" class="btn btn-primary btn-xl page-scroll">开始点餐</a>
             </div>
         </div>
     </header>

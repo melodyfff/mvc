@@ -1,5 +1,6 @@
 package com.xinchen.mvc.dao;
 
+import com.xinchen.mvc.dto.UserList;
 import com.xinchen.mvc.model.XUser;
 import org.apache.ibatis.annotations.Param;
 
@@ -44,5 +45,11 @@ public interface UserDao {
      * @return
      */
     List<XUser> queryAll();
+
+    /**
+     * 查询用户和角色
+     * @return
+     */
+    List<UserList> queryAllUser();
 
 }
