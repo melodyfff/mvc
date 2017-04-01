@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PageInfo<UserList> queryAllUser(int start) {
-        PageHelper.startPage(start,5);
+        PageHelper.startPage(start,10);
         return new PageInfo<UserList>(userDao.queryAllUser());
     }
 

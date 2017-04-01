@@ -102,22 +102,23 @@
                     <cite>控制台</cite>
                 </li>
             </ul>
-            <div class="layui-tab-content" style="min-height: 150px; padding: 5px 0 0 0;">
-
-
+            <div class="layui-tab-content" style="min-height: 150px; padding: 20px 20px 20px 20px;">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>用户管理</legend>
+                </fieldset>
+                <div style="text-align: right"><button class="layui-btn layui-btn-big" id="addbtn"><i class="layui-icon">&#xe654;</i>新增</button></div>
                 <div class="layui-form">
                     <table class="layui-table">
                         <colgroup>
                             <col width="50">
                             <col width="150">
-                            <col width="150">
-                            <col width="200">
-                            <col>
+                            <col width="20">
                         </colgroup>
                         <thead>
                         <tr>
-                            <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
-                            <th>用户名${pageInfo.size}</th>
+                            <th>用户名</th>
+                            <th>角色</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody id="user_list">
@@ -126,7 +127,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="demo8"></div>
+                <div id="demo8" style="text-align:center"></div>
             </div>
         </div>
     </div>
@@ -158,18 +159,14 @@
                 form = layui.form()
             ,layer = layui.layer;
 
-            $('.layui-btn').on('click',function () {
-                layer.msg('hello');
-            });
-
             //全选
-            form.on('checkbox(allChoose)', function(data){
-                var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
-                child.each(function(index, item){
-                    item.checked = data.elem.checked;
-                });
-                form.render('checkbox');
-            });
+//            form.on('checkbox(allChoose)', function(data){
+//                var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+//                child.each(function(index, item){
+//                    item.checked = data.elem.checked;
+//                });
+//                form.render('checkbox');
+//            });
             //插入content
             <%--$.get("${pageContext.request.contextPath}/order/orderlist", function(data){--%>
                 <%--var qqq = $('.layui-tab-content');--%>
@@ -182,24 +179,22 @@
             var render = function(curr){
                 var result='';
                 $.get('${pageContext.request.contextPath}/admin/userList?curr='+curr,function (data) {
-
-                    //此处只是演示，实际场景通常是返回已经当前页已经分组好的数据
-                    console.log(data);
                     var size = data.size;
                     for(var i = 0; i < size; i++){
                         var userName = data.list[i].userName;
-                        result += '<tr><td><input type="checkbox" name="" lay-skin="primary"></td><td>'+userName+'</td></tr>';
+                        var role = data.list[i].role;
+                        result += '<tr><td>'+userName+'</td>' +
+                            '<td>'+role+'</td>' +
+                            '<td style="text-align: center"><button class="layui-btn layui-btn-normal layui-btn-small" id="updatebtn" username="'+userName+'">修改<i class="layui-icon"></i></button>' +
+                            '<button class="layui-btn layui-btn-danger layui-btn-small" id="deletebtn" username="'+userName+'">删除<i class="layui-icon"></i></button></td></tr>';
                     }
-//                    console.log(result);
-//                    console.log(data);
                     document.getElementById('user_list').innerHTML =result;
-                    console.log('进入分页');
                     laypage({
                         cont: 'demo8',
+                        skin:'flow' ,
                         curr: curr
                         ,pages: data.pages //得到总页数
                         ,jump: function(obj,first){
-                            console.log("first=="+first);
                             if(!first){
                                 render(obj.curr);
                             }
@@ -212,7 +207,25 @@
 
             $(document).ready(function () {
                 render(1);
+                $('#addbtn').on('click',function () {
+
+                    console.log($(this).text());
+                    layer.msg('新增');
+                });
+                $(document).on("click",'#updatebtn',function(){
+                    console.log($(this).attr('username'));
+                    layer.msg('修改');
+                });
+                $(document).on("click",'#deletebtn',function () {
+                    console.log($(this).attr('username'));
+                    layer.msg('删除');
+                });
+
             });
+
+
+
+
 
         });
     </script>
