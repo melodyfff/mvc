@@ -5,10 +5,12 @@ import com.xinchen.mvc.model.XUser;
 import com.xinchen.mvc.service.UserService;
 import com.xinchen.mvc.utils.MD5Utils;
 import org.apache.ibatis.annotations.Param;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 
 
 /**
@@ -21,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-
+    private final static Logger logger = Logger.getLogger(LoginController.class.getName());
     @Autowired
     private UserService userService;
 
@@ -48,8 +50,8 @@ public class LoginController {
             return new ModelAndView("redirect:/500");
         }
 
-        System.out.println(userName);
-        System.out.println(passWord);
+        logger.info("username="+userName);
+        logger.info("password="+passWord);
         ModelAndView mav = new ModelAndView("garden/index");
         mav.addObject("userName", userName);
         mav.addObject("role", role.getRoleName());

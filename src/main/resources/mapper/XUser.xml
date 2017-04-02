@@ -21,12 +21,19 @@
         WHERE username = #{username}
     </select>
 
+    <select id="queryUserSize" parameterType="String" resultType="Integer">
+        SELECT count(*)
+        FROM x_user
+        WHERE username = #{username};
+    </select>
+
     <select id="queryAll" resultType="XUser">
         SELECT id ,username, password,role_id
         FROM x_user
     </select>
     <select id="queryAllUser" resultType="UserList">
       SELECT
+    a.id,
 	a.username,
 	b.role_name
     FROM
@@ -35,6 +42,28 @@
     AND b.id != 1
 
     </select>
-<!--    ORDER BY
-	role_name DESC-->
+
+    <select id="queryUserDetailById" parameterType="long" resultType="XUser">
+        SELECT *
+        FROM x_user
+        where id = #{id}
+    </select>
+
+    <insert id="insertUser">
+        INSERT INTO x_user (username,password,role_id,address,email,sexual,name,create_time)
+        VALUES (#{xuser.username},#{xuser.password},#{xuser.roleId},#{xuser.address},#{xuser.email},#{xuser.sexual},#{xuser.name},#{xuser.createTime})
+    </insert>
+
+    <delete id="deleteUser" parameterType="long">
+      delete from user where id=#{id}
+    </delete>
+
+    <update id="updateUser" parameterType="XUser">
+        update x_user
+        set password=#{password},role_id=#{roleId},
+         address=#{address},email=#{email},sexual=#{sexual},name=#{name}
+         where id=#{id}
+    </update>
+    <!--    ORDER BY
+        role_name DESC-->
 </mapper>

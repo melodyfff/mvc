@@ -39,6 +39,12 @@ public interface UserDao {
      * @return
      */
     XUser queryByuserName(@Param("username") String username);
+    /**
+     * 判断用户是否存在
+     * @param username
+     * @return
+     */
+    int queryUserSize(@Param("username") String username);
 
     /**
      * 查询所有用户
@@ -51,5 +57,33 @@ public interface UserDao {
      * @return
      */
     List<UserList> queryAllUser();
+
+    /**
+     * 根据ID查询用户详情
+     * @param id
+     * @return
+     */
+    XUser queryUserDetailById(long id);
+
+    /**
+     * 新增用户
+     * @param user
+     * @return
+     */
+    int insertUser(@Param("xuser") XUser user);
+
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    int deleteUser(long id);
+
+    /**
+     * 修改用户
+     * @param user
+     * @return
+     */
+    int updateUser(XUser user);
 
 }

@@ -9,15 +9,27 @@ package com.xinchen.mvc.dto;
  ****************************************/
 
 public class UserList {
+    private long id;
+
+
     private String userName;
     private String roleName;
 
     @Override
     public String toString() {
         return "UserList{" +
-                "userName='" + userName + '\'' +
-                ", role='" + roleName + '\'' +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", roleName='" + roleName + '\'' +
                 '}';
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUserName() {

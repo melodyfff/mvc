@@ -2,15 +2,19 @@ package com.xinchen.mvc.service.Impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xinchen.mvc.controller.LoginController;
 import com.xinchen.mvc.dao.RoleDao;
 import com.xinchen.mvc.dao.UserDao;
 import com.xinchen.mvc.dto.UserList;
 import com.xinchen.mvc.model.XRole;
 import com.xinchen.mvc.model.XUser;
 import com.xinchen.mvc.service.UserService;
+import com.xinchen.mvc.utils.MD5Utils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +26,7 @@ import java.util.List;
  ****************************************/
 @Service
 public class UserServiceImpl implements UserService {
+    private final static Logger logger = Logger.getLogger(UserServiceImpl.class.getName());
     @Autowired
     private UserDao userDao;
     @Autowired
@@ -45,10 +50,40 @@ public class UserServiceImpl implements UserService {
         return roleDao.queryById(id);
     }
 
-    @Override
+    /**
+     * 分页查询
+     * @param start
+     * @return
+     */
     public PageInfo<UserList> queryAllUser(int start) {
         PageHelper.startPage(start,10);
         return new PageInfo<UserList>(userDao.queryAllUser());
+    }
+
+    /**
+     * 新增用户
+     * @param user
+     * @return
+     */
+    public int insertUser(XUser user) {
+        String un = user.getUsername();
+
+        if (userDao.queryUserSize(un) != 0) {
+            logger.error("新建用户失败，用户已经存在");
+            return 0;
+        }
+        String role = roleDao.queryById(user.getRoleId()).getRoleName();
+        String pwd = user.getPassword();
+        user.setPassword(MD5Utils.getPwd(pwd));
+        user.setCreateTime(new Date());
+        user.setRole(role);
+        return userDao.insertUser(user);
+    }
+
+    @Override
+    public int isUserExist(String username) {
+
+        return userDao.queryUserSize(username);
     }
 
 

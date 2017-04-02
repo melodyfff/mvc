@@ -205,13 +205,29 @@
 
             };
 
+
+
             $(document).ready(function () {
                 render(1);
                 $('#addbtn').on('click',function () {
 
                     console.log($(this).text());
                     layer.msg('新增');
+                    //页面层-自定义
+                    //iframe层-禁滚动条
+                    layer.open({
+                        type: 2,
+                        title:'新增用户',
+                        area: ['50%','50%'],
+                        skin: 'layui-layer-rim', //加上边框
+                        content: ['${pageContext.request.contextPath}/admin/adduserpage'],
+                        end: function () {
+                            location.reload();
+                        }
+                    });
                 });
+
+
                 $(document).on("click",'#updatebtn',function(){
                     console.log($(this).attr('username'));
                     layer.msg('修改');
