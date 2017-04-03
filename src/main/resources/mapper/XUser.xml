@@ -4,8 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xinchen.mvc.dao.UserDao">
     <select id="queryById" parameterType="long" resultType="XUser">
-        SELECT id ,username, password,role_id
-        FROM x_user
+        SELECT
+        a.id,
+	a.username,
+	a.password,
+	a.role_id,
+	a.phone,
+	a.address,
+	a.email,
+	a.sexual,
+	a.name
+        FROM x_user as a
         WHERE id = #{id}
     </select>
 
@@ -32,14 +41,24 @@
         FROM x_user
     </select>
     <select id="queryAllUser" resultType="UserList">
-      SELECT
-    a.id,
+     SELECT
+	a.id,
 	a.username,
-	b.role_name
-    FROM
-        x_user AS a
-    INNER JOIN x_role AS b ON a.role_id = b.id
-    AND b.id != 1
+	b.role_name,
+	a.phone,
+	a.address,
+	a.email,
+	a.sexual,
+	a.name,
+	a.create_time
+FROM
+	x_user AS a
+INNER JOIN x_role AS b ON a.role_id = b.id
+AND b.id != 1
+        <if test="search != null || search != ''">
+            AND username like #{search}
+        </if>
+ORDER BY id
 
     </select>
 
@@ -50,17 +69,17 @@
     </select>
 
     <insert id="insertUser">
-        INSERT INTO x_user (username,password,role_id,address,email,sexual,name,create_time)
-        VALUES (#{xuser.username},#{xuser.password},#{xuser.roleId},#{xuser.address},#{xuser.email},#{xuser.sexual},#{xuser.name},#{xuser.createTime})
+        INSERT INTO x_user (username,password,role_id,phone,address,email,sexual,name,create_time)
+        VALUES (#{xuser.username},#{xuser.password},#{xuser.roleId},#{xuser.phone},#{xuser.address},#{xuser.email},#{xuser.sexual},#{xuser.name},#{xuser.createTime})
     </insert>
 
     <delete id="deleteUser" parameterType="long">
-      delete from user where id=#{id}
+      delete from x_user where id=#{id}
     </delete>
 
     <update id="updateUser" parameterType="XUser">
         update x_user
-        set password=#{password},role_id=#{roleId},
+        set password=#{password},role_id=#{roleId},phone=#{phone},
          address=#{address},email=#{email},sexual=#{sexual},name=#{name}
          where id=#{id}
     </update>

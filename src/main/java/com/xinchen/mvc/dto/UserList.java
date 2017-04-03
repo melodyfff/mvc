@@ -1,5 +1,7 @@
 package com.xinchen.mvc.dto;
 
+import java.util.Date;
+
 /**
  * Description:
  *
@@ -10,10 +12,14 @@ package com.xinchen.mvc.dto;
 
 public class UserList {
     private long id;
-
-
     private String userName;
     private String roleName;
+    private String phone;
+    private String address;
+    private String email;
+    private String sexual;
+    private String name;
+    private Date createTime;
 
     @Override
     public String toString() {
@@ -21,7 +27,69 @@ public class UserList {
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", roleName='" + roleName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", sexual='" + sexual + '\'' +
+                ", name='" + name + '\'' +
+                ", createTime=" + createTime +
                 '}';
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSexual() {
+        return sexual;
+    }
+
+    public void setSexual(String sexual) {
+        this.sexual = sexual;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public long getId() {

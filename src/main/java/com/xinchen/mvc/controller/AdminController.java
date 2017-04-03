@@ -33,10 +33,10 @@ public class AdminController {
 
     @RequestMapping("userList")
     @ResponseBody
-    public PageInfo getUserList(@Param("curr")String curr){
-        System.out.println(curr);
+    public PageInfo getUserList(@Param("curr")String curr,@Param("search")String search){
+        System.out.println(curr+"   "+search);
 //        PageHelper.startPage(Integer.parseInt(curr),5);
-        PageInfo pageInfo = userService.queryAllUser(Integer.parseInt(curr));
+        PageInfo pageInfo = userService.queryAllUser(Integer.parseInt(curr),search);
         return pageInfo;
     }
 
@@ -59,6 +59,38 @@ public class AdminController {
         return jsonStu;
     }
 
+    @RequestMapping("updateuserpage")
+    public ModelAndView forwardUpdateUser(@Param("updateid") String updateid){
+        XUser user = userService.queryByUserId(Long.parseLong(updateid));
+        ModelAndView mav = new ModelAndView("user/updateuser");
+        mav.addObject("user",user);
+        return mav;
+    }
+
+    @RequestMapping(value = "update")
+    @ResponseBody
+    public JSONObject updateUser(XUser user){
+        String msg = "成功";
+        logger.info(user);
+        int result = userService.updateUser(user);
+        ResponseJson<XUser> my = new ResponseJson<XUser>();
+        my.setStatus(result);
+        my.setErrmsg(msg);
+        JSONObject jsonStu = (JSONObject) JSON.toJSON(my);
+        return jsonStu;
+    }
+
+    @RequestMapping(value = "delete")
+    @ResponseBody
+    public JSONObject deleteUser(@Param("deleteid") String deleteid){
+        String msg = "删除成功";
+        int result = userService.deleteUser(Long.parseLong(deleteid));
+        ResponseJson<XUser> my = new ResponseJson<XUser>();
+        my.setStatus(result);
+        my.setErrmsg(msg);
+        JSONObject jsonStu = (JSONObject) JSON.toJSON(my);
+        return jsonStu;
+    }
     @RequestMapping(value = "isUserExist")
     @ResponseBody
     public int addUser(@Param("username")String username){

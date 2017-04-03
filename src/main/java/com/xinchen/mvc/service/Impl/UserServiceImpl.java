@@ -50,14 +50,20 @@ public class UserServiceImpl implements UserService {
         return roleDao.queryById(id);
     }
 
+    @Override
+    public XUser queryByUserId(long id) {
+        return userDao.queryById(id);
+    }
+
     /**
      * 分页查询
      * @param start
      * @return
      */
-    public PageInfo<UserList> queryAllUser(int start) {
+    public PageInfo<UserList> queryAllUser(int start,String search) {
         PageHelper.startPage(start,10);
-        return new PageInfo<UserList>(userDao.queryAllUser());
+        search = search+"%";
+        return new PageInfo<UserList>(userDao.queryAllUser(search));
     }
 
     /**
@@ -84,6 +90,21 @@ public class UserServiceImpl implements UserService {
     public int isUserExist(String username) {
 
         return userDao.queryUserSize(username);
+    }
+
+    @Override
+    public int updateUser(XUser user) {
+        XUser temp = userDao.queryById(user.getId());
+        if (!temp.getPassword().equals(user.getPassword())){
+            System.out.println(temp.getPassword()+"  "+user.getPassword());
+            user.setPassword(MD5Utils.getPwd(user.getPassword()));
+        }
+        return userDao.updateUser(user);
+    }
+
+    @Override
+    public int deleteUser(long id) {
+        return userDao.deleteUser(id);
     }
 
 

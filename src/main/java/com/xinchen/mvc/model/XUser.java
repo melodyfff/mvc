@@ -22,6 +22,8 @@ public class XUser {
 
     private String role;
 
+    private String phone;
+
     private String address;
 
     private String email;
@@ -31,6 +33,15 @@ public class XUser {
     private String name;
 
     private Date createTime;
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public Date getCreateTime() {
         return createTime;
@@ -120,11 +131,12 @@ public class XUser {
                 ", password='" + password + '\'' +
                 ", roleId=" + roleId +
                 ", role='" + role + '\'' +
+                ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", sexual='" + sexual + '\'' +
                 ", name='" + name + '\'' +
-                ", createTime='" + createTime + '\'' +
+                ", createTime=" + createTime +
                 '}';
     }
 }

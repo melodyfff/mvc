@@ -32,7 +32,7 @@ public class UserDaoTest {
     private UserDao userDao;
     @Test
     public void query(){
-        System.out.println(userDao.queryAllUser());
+        System.out.println(userDao.queryAllUser(null));
     }
     @Test
     public void queryAll() throws Exception {

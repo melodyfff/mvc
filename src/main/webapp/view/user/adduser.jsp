@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/plugins/layui/css/layui.css" media="all"/>
     <style>
         #myuseradd{
-            width: 600px;
+            width: 100%;
 
         }
     </style>
@@ -155,6 +155,8 @@
                     layer.msg(""+data.status);
                     if(data.status==1){
                         parent.layer.close(index);
+                    }else {
+                        layer.msg('新增失败！！！');
                     }
                 }
             });

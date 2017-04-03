@@ -29,13 +29,19 @@ public interface UserService {
      * @return
      */
     XRole queryById(long id);
+    /**
+     * 根据ID查找用户
+     * @param id
+     * @return
+     */
+    XUser queryByUserId(long id);
 
     /**
      * 分页查询
      * @param start
      * @return
      */
-    PageInfo<UserList> queryAllUser(int start);
+    PageInfo<UserList> queryAllUser(int start,String search);
 
     /**
      * 新增用户
@@ -49,4 +55,18 @@ public interface UserService {
      * @return
      */
     int isUserExist(String username);
+
+    /**
+     * 更新用户
+     * @param user
+     * @return
+     */
+    int updateUser(XUser user);
+
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    int deleteUser(long id);
 }

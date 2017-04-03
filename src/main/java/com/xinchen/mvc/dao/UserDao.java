@@ -56,7 +56,7 @@ public interface UserDao {
      * 查询用户和角色
      * @return
      */
-    List<UserList> queryAllUser();
+    List<UserList> queryAllUser(@Param("search") String search);
 
     /**
      * 根据ID查询用户详情
