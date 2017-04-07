@@ -31,6 +31,11 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping("usermanage")
+    public String forwardUserManage(){
+        return "/user/usermanage";
+    }
+
     @RequestMapping("userList")
     @ResponseBody
     public PageInfo getUserList(@Param("curr")String curr,@Param("search")String search){

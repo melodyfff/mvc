@@ -45,16 +45,16 @@ layui.config({
         // $.get("http://localhost:8080/mvc/garden/hot", function(data){
         //     $('.layui-tab-content').empty().append(data);
         // });
-        // if(data.field.title == "校园烧烤"){
-        //     $.get("http://localhost:8080/mvc/garden/main", function(data){
-        //         $('.layui-tab-content').empty().append(data);
-        //     });
-        // }
-        // if(data.field.title == "周边外卖"){
-        //     $.get("http://localhost:8080/mvc/order/orderlist", function(data){
-        //         $('.layui-tab-content').empty().append(data);
-        //     });
-        // }
+        if(data.field.title == "用户管理"){
+            $.get('http://localhost:8080/mvc/admin/usermanage',function (data) {
+                $('#content').empty().append(data);
+            })
+        }
+        if(data.field.title == "商家管理"){
+            $.get("http://localhost:8080/mvc/order/orderlist", function(data){
+                $('#content').empty();
+            });
+        }
         console.log(data.field.title);
     });
 

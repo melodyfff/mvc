@@ -25,6 +25,31 @@ public class SellerShow {
     private int sendTime;
     //配送费
     private int sendPrice;
+    //商家用户id
+    private int sellerId;
+
+    @Override
+    public String toString() {
+        return "SellerShow{" +
+                "id=" + id +
+                ", sellerName='" + sellerName + '\'' +
+                ", sellerUrl='" + sellerUrl + '\'' +
+                ", sellerLogo='" + sellerLogo + '\'' +
+                ", scoreNum='" + scoreNum + '\'' +
+                ", startPrice=" + startPrice +
+                ", sendTime=" + sendTime +
+                ", sendPrice=" + sendPrice +
+                ", sellerId=" + sellerId +
+                '}';
+    }
+
+    public int getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(int sellerId) {
+        this.sellerId = sellerId;
+    }
 
     public int getId() {
         return id;
@@ -90,17 +115,4 @@ public class SellerShow {
         this.sendPrice = sendPrice;
     }
 
-    @Override
-    public String toString() {
-        return "SellerShow{" +
-                "id=" + id +
-                ", sellerName='" + sellerName + '\'' +
-                ", sellerUrl='" + sellerUrl + '\'' +
-                ", sellerLogi='" + sellerLogo + '\'' +
-                ", scoreNum='" + scoreNum + '\'' +
-                ", startPrice=" + startPrice +
-                ", sendTime=" + sendTime +
-                ", sendPrice=" + sendPrice +
-                '}';
-    }
 }
