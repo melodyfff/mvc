@@ -1,5 +1,7 @@
 package com.xinchen.mvc.model;
 
+import java.util.Date;
+
 /**
  * Created by xinchen on 2017/4/5.
  */
@@ -16,10 +18,21 @@ public class XSeller {
     private int sendTime;
     //起送价格
     private int startPrice;
+    //成立时间
+    private Date createTime;
 
     public XSeller() {
-        this.sendTime = 0;
+        this.sendTime = 30;
         this.startPrice = 0;
+        this.createTime=new Date();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public int getSendTime() {
@@ -79,6 +92,7 @@ public class XSeller {
                 ", sellerLogo='" + sellerLogo + '\'' +
                 ", sendTime=" + sendTime +
                 ", startPrice=" + startPrice +
+                ", createTime=" + createTime +
                 '}';
     }
 }

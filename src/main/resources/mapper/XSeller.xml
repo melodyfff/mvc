@@ -8,7 +8,10 @@
         a.id,
         a.seller_id,
         a.seller_name,
-        a.seller_logo
+        a.seller_logo,
+        a.send_time,
+        a.start_price,
+        a.create_time
         FROM x_seller as a
         WHERE id = #{id}
     </select>
@@ -20,14 +23,28 @@
         a.seller_name,
         a.seller_logo,
         a.send_time,
-        a.start_price
+        a.start_price,
+        a.create_time
         FROM x_seller as a
         WHERE seller_id = #{sellerId}
     </select>
 
+
+    <select id="queryAllSeller" resultType="XSeller">
+        SELECT
+        *
+        FROM
+        x_seller AS a
+        <if test="search != null || search != ''">
+            where seller_name like #{search}
+        </if>
+        ORDER BY a.id
+    </select>
+
+
     <insert id="insertSeller">
-        INSERT INTO x_seller (seller_id,seller_name,seller_logo,send_time,start_price)
-        VALUES (#{sellerId},#{sellerName},#{sellerLogo},#{sendTime},#{startPrice})
+        INSERT INTO x_seller (seller_id,seller_name,seller_logo,send_time,start_price,create_time)
+        VALUES (#{sellerId},#{sellerName},#{sellerLogo},#{sendTime},#{startPrice},#{createTime})
     </insert>
 
     <update id="updateSeller" parameterType="XSeller">

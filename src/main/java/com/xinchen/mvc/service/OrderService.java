@@ -1,19 +1,50 @@
 package com.xinchen.mvc.service;
 
-import com.xinchen.mvc.model.SellerShow;
+import com.xinchen.mvc.model.OrderList;
 
 import java.util.List;
 
 /**
- * Description:
+ * Description:订单管理
  *
  * @author xinchen (xinchenmelody@gmail.com)
- * @date 2017/3/12 13:16.
- * @see 2017/3/12 13:16 Created
+ * @date 2017/4/7 23:28.
+ * @see 2017/4/7 23:28 Created
  ****************************************/
 
 public interface OrderService {
-    SellerShow queryById(long id);
+    /**
+     * 根据商家ID查询订单
+     * @param id
+     * @return
+     */
+    List<OrderList> queryOrderListBySellerId(long id);
 
-    List<SellerShow> getAll();
+    /**
+     * 根据用户ID查询订单
+     * @param id
+     * @return
+     */
+    List<OrderList> queryOrderListByUserId(long id);
+
+    /**
+     * 插入订单
+     * @param orderList
+     * @return
+     */
+    int insertOrderList(OrderList orderList);
+
+    /**
+     * 修改订单
+     * @param orderList
+     * @return
+     */
+    int updateOrderList(OrderList orderList);
+
+    /**
+     * 删除订单
+     * @param id
+     * @return
+     */
+    int deleteOrderList(long id);
 }

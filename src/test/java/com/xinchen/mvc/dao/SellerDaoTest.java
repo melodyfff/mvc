@@ -42,7 +42,8 @@ public class SellerDaoTest {
         xSeller.setSellerId(3);
         xSeller.setSellerName("sam1");
         xSeller.setSellerLogo("test2");
-        logger.info(sellerDao.insertSeller(xSeller));
+//        logger.info(sellerDao.insertSeller(xSeller));
+        logger.info(sellerDao.queryAllSeller("%"));
     }
 
 }

@@ -1,6 +1,6 @@
 package com.xinchen.mvc.controller;
 
-import com.xinchen.mvc.service.OrderService;
+import com.xinchen.mvc.service.SellerShowService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class OrderController {
 
     @Autowired
-    private OrderService orderService;
+    private SellerShowService sellerShowService;
     @RequestMapping("/orderlist")
     public ModelAndView orderlist(){
         ModelAndView mav = new ModelAndView("order/orderlist");
-        mav.addObject("seller",orderService.getAll());
+        mav.addObject("seller", sellerShowService.getAll());
         return mav;
     }
 
@@ -31,8 +31,8 @@ public class OrderController {
     public ModelAndView index(@Param("sellerId")String sellerId){
         ModelAndView mav = new ModelAndView("order/orderpage");
         System.out.println(sellerId);
-        System.out.println(orderService.queryById(Long.parseLong(sellerId)));
-        mav.addObject("seller",orderService.queryById(Long.parseLong(sellerId)));
+        System.out.println(sellerShowService.queryById(Long.parseLong(sellerId)));
+        mav.addObject("seller", sellerShowService.queryById(Long.parseLong(sellerId)));
         return mav;
     }
 }

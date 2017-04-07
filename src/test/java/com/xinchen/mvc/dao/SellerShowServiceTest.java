@@ -17,8 +17,8 @@ import javax.annotation.Resource;
  ****************************************/
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring-base.xml"})
-public class SellerShowDaoTest {
-    private final static Logger logger = Logger.getLogger(SellerShowDaoTest.class.getName());
+public class SellerShowServiceTest {
+    private final static Logger logger = Logger.getLogger(SellerShowServiceTest.class.getName());
     @Resource
     private SellerShowDao sellerShowDao;
 
