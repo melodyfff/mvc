@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinchen.mvc.dao.SellerDao">
+    <select id="querySellerById" parameterType="long" resultType="XSeller">
+        SELECT
+        a.id,
+        a.seller_id,
+        a.seller_name,
+        a.seller_logo
+        FROM x_seller as a
+        WHERE id = #{id}
+    </select>
+
+    <select id="querySellerBySellerId" parameterType="long" resultType="XSeller">
+        SELECT
+        a.id,
+        a.seller_id,
+        a.seller_name,
+        a.seller_logo,
+        a.send_time,
+        a.start_price
+        FROM x_seller as a
+        WHERE seller_id = #{sellerId}
+    </select>
+
+    <insert id="insertSeller">
+        INSERT INTO x_seller (seller_id,seller_name,seller_logo,send_time,start_price)
+        VALUES (#{sellerId},#{sellerName},#{sellerLogo},#{sendTime},#{startPrice})
+    </insert>
+
+    <update id="updateSeller" parameterType="XSeller">
+        update x_seller
+        set seller_name=#{sellerName},seller_logo=#{sellerLogo},
+        send_time=#{sendTime},start_price=#{startPrice}
+        where seller_id = #{sellerId}
+    </update>
+
+    <delete id="deleteSeller" parameterType="long">
+        delete from x_seller where seller_id = #{sellerId}
+    </delete>
+</mapper>

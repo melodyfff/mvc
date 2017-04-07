@@ -25,4 +25,11 @@ public interface SellerShowDao {
      * @return
      */
     List<SellerShow> queryAll();
+
+    /**
+     * 根据sellerId查询用户
+     * @param sellerId
+     * @return
+     */
+    SellerShow queryBySellerId(long sellerId);
 }

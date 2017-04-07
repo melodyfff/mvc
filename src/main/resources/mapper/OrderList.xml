@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinchen.mvc.dao.OrderListDao">
+    <select id="queryOrderListById" parameterType="long" resultType="OrderList">
+        SELECT
+        *
+        FROM kmu_order_list
+        WHERE id = #{id}
+    </select>
+    <select id="queryOrderListBySellerId" parameterType="long" resultType="OrderList">
+        SELECT
+        *
+        FROM kmu_order_list
+        WHERE seller_id = #{sellerId}
+    </select>
+    <select id="queryOrderListByUserId" parameterType="long" resultType="OrderList">
+        SELECT
+        *
+        FROM kmu_order_list
+        WHERE user_id = #{userId}
+    </select>
+    <insert id="insertOrderList">
+        INSERT INTO kmu_order_list (seller_id,seller_name,user_id,user_name,phone,address,note,detail,price,state,date)
+        VALUES (#{sellerId},#{sellerName},#{userId},#{userName},#{phone},#{address},#{note},#{detail},#{price},#{state},#{date})
+    </insert>
+    <update id="updateOrderList" parameterType="OrderList">
+        update kmu_order_list
+        set seller_id=#{sellerId},seller_name=#{sellerName},user_id=#{userId},user_name=#{userName},phone=#{phone},address=#{address},note=#{note},detail=#{detail},price=#{price},state=#{state},date=#{date}
+        where id = #{id}
+    </update>
+    <delete id="deleteOrderList" parameterType="long">
+        delete from kmu_order_list where id = #{id}
+    </delete>
+</mapper>

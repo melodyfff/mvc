@@ -9,6 +9,12 @@
         WHERE id = #{id}
     </select>
 
+    <select id="queryBySellerId" parameterType="long" resultType="SellerShow">
+        SELECT *
+        FROM kmu_sellershow
+        WHERE seller_id = #{sellerId}
+    </select>
+
     <select id="queryAll"  resultType="SellerShow">
         SELECT *
         FROM kmu_sellershow

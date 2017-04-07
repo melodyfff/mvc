@@ -12,6 +12,31 @@ public class XSeller {
     private String sellerName;
     //卖家图标
     private String sellerLogo;
+    //送货时间
+    private int sendTime;
+    //起送价格
+    private int startPrice;
+
+    public XSeller() {
+        this.sendTime = 0;
+        this.startPrice = 0;
+    }
+
+    public int getSendTime() {
+        return sendTime;
+    }
+
+    public void setSendTime(int sendTime) {
+        this.sendTime = sendTime;
+    }
+
+    public int getStartPrice() {
+        return startPrice;
+    }
+
+    public void setStartPrice(int startPrice) {
+        this.startPrice = startPrice;
+    }
 
     public long getId() {
         return id;
@@ -52,6 +77,8 @@ public class XSeller {
                 ", sellerId=" + sellerId +
                 ", sellerName='" + sellerName + '\'' +
                 ", sellerLogo='" + sellerLogo + '\'' +
+                ", sendTime=" + sendTime +
+                ", startPrice=" + startPrice +
                 '}';
     }
 }

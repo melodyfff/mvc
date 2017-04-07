@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinchen.mvc.dao.SellerFoodTypeDao">
+    <select id="querySellerFoodTypeById" parameterType="long" resultType="SellerFoodType">
+        SELECT
+        a.id,
+        a.seller_id,
+        a.food_type
+        FROM kmu_seller_food_type as a
+        WHERE id = #{id}
+    </select>
+
+    <select id="querySellerFoodTypeBySellerId" parameterType="long" resultType="SellerFoodType">
+        SELECT
+        a.id,
+        a.seller_id,
+        a.food_type
+        FROM kmu_seller_food_type as a
+        WHERE  seller_id= #{sellerId}
+    </select>
+
+    <insert id="insertSellerFoodType">
+        INSERT INTO kmu_seller_food_type (seller_id,food_type)
+        VALUES (#{sellerId},#{foodType})
+    </insert>
+
+    <update id="updateSellerFoodType" parameterType="SellerFoodType">
+        update kmu_seller_food_type
+        set food_type=#{foodType}
+        where seller_id = #{sellerId}
+    </update>
+
+    <delete id="deleteSellerFoodType">
+        delete from kmu_seller_food_type where seller_id = #{sellerId} and food_type=#{foodType}
+    </delete>
+</mapper>
