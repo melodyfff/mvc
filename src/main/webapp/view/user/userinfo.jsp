@@ -63,28 +63,6 @@
 
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">角色</label>
-            <div class="layui-input-block">
-                <select name="roleId" lay-filter="aihao">
-                    <c:if test="${user.roleId==2}">
-                        <option value=""></option>
-                        <option value="2" selected="">普通用户</option>
-                        <option value="3">商家</option>
-                    </c:if>
-                    <c:if test="${user.roleId==3}">
-                        <option value=""></option>
-                        <option value="2" >普通用户</option>
-                        <option value="3" selected="">商家</option>
-                    </c:if>
-                    <c:if test="${user.roleId==''||user.roleId==null}">
-                        <option value=""></option>
-                        <option value="2" >普通用户</option>
-                        <option value="3" >商家</option>
-                    </c:if>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
             <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
                 <c:if test="${user.sexual=='男'}">

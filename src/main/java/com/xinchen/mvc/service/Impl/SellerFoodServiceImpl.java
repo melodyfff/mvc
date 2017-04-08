@@ -1,10 +1,12 @@
 package com.xinchen.mvc.service.Impl;
 
+import com.xinchen.mvc.controller.FoodController;
 import com.xinchen.mvc.dao.SellerFoodDao;
 import com.xinchen.mvc.dao.SellerFoodTypeDao;
 import com.xinchen.mvc.model.SellerFood;
 import com.xinchen.mvc.model.SellerFoodType;
 import com.xinchen.mvc.service.SellerFoodService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +21,12 @@ import java.util.List;
  ****************************************/
 @Service
 public class SellerFoodServiceImpl implements SellerFoodService {
+    private final static Logger logger = Logger.getLogger(SellerFoodServiceImpl.class.getName());
     @Autowired
     private SellerFoodTypeDao sellerFoodTypeDao;
     @Autowired
     private SellerFoodDao sellerFoodDao;
+
     //===================================================
     //食物类别操作
     //===================================================
@@ -32,12 +36,17 @@ public class SellerFoodServiceImpl implements SellerFoodService {
     }
 
     @Override
-    public SellerFoodType querySellerFoodTypeBySellerId(long sellerId) {
+    public List<SellerFoodType> querySellerFoodTypeBySellerId(long sellerId) {
         return sellerFoodTypeDao.querySellerFoodTypeBySellerId(sellerId);
     }
 
     @Override
     public int insertSellerFoodType(SellerFoodType sellerFoodType) {
+        SellerFoodType result = sellerFoodTypeDao.querySellerFoodType(sellerFoodType.getSellerId(), sellerFoodType.getFoodType());
+        if (result != null) {
+            logger.error("该菜品已经存在");
+            return 0;
+        }
         return sellerFoodTypeDao.insertSellerFoodType(sellerFoodType);
     }
 
@@ -48,7 +57,7 @@ public class SellerFoodServiceImpl implements SellerFoodService {
 
     @Override
     public int deleteSellerFoodType(long sellerId, String foodType) {
-        return sellerFoodTypeDao.deleteSellerFoodType(sellerId,foodType);
+        return sellerFoodTypeDao.deleteSellerFoodType(sellerId, foodType);
     }
 
     //===================================================
@@ -76,6 +85,6 @@ public class SellerFoodServiceImpl implements SellerFoodService {
 
     @Override
     public int deleteSellerFood(long sellerId, String foodName) {
-        return sellerFoodDao.deleteSellerFood(sellerId,foodName);
+        return sellerFoodDao.deleteSellerFood(sellerId, foodName);
     }
 }

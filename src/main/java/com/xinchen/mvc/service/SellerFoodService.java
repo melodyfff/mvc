@@ -29,7 +29,7 @@ public interface SellerFoodService {
      * @param sellerId
      * @return
      */
-    SellerFoodType querySellerFoodTypeBySellerId(long sellerId);
+    List<SellerFoodType> querySellerFoodTypeBySellerId(long sellerId);
 
     /**
      * 插入食物列表
@@ -88,5 +88,5 @@ public interface SellerFoodService {
      * @param foodName
      * @return
      */
-    int deleteSellerFood(@Param("sellerId") long sellerId,@Param("foodName") String foodName);
+    int deleteSellerFood(long sellerId,String foodName);
 }

@@ -15,9 +15,15 @@
 
         <table class="layui-table">
             <colgroup>
+                <col width="150">
+                <col width="150">
+                <col width="150">
+                <col width="150">
+                <col width="150">
+                <col width="150">
                 <col width="50">
                 <col width="150">
-                <col width="20">
+                <col width="150">
             </colgroup>
             <thead>
             <tr>
@@ -46,6 +52,28 @@
             form = layui.form()
             ,layer = layui.layer;
 
+
+
+        //获得年月日      得到日期oTime
+        function getMyDate(str){
+            var oDate = new Date(str),
+                oYear = oDate.getFullYear(),
+                oMonth = oDate.getMonth()+1,
+                oDay = oDate.getDate(),
+                oHour = oDate.getHours(),
+                oMin = oDate.getMinutes(),
+                oSen = oDate.getSeconds(),
+                oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay) +' '+ getzf(oHour) +':'+ getzf(oMin) +':'+getzf(oSen);//最后拼接时间
+            return oTime;
+        };
+        //补0操作
+        function getzf(num){
+            if(parseInt(num) < 10){
+                num = '0'+num;
+            }
+            return num;
+        }
+
         //调用分页
         //渲染
         var render = function(curr){
@@ -62,7 +90,7 @@
                     var address = data.list[i].address;
                     var email = data.list[i].email;
                     var sexual = data.list[i].sexual;
-                    var createTime = data.list[i].createTime;
+                    var createTime = getMyDate(data.list[i].createTime);
                     result += '<tr><td>'+userName+'</td>' +
                         '<td>'+role+'</td>' +'<td>'+name+'</td>'+'<td>'+phone+'</td>'+'<td>'+address+'</td>'+'<td>'+email+'</td>'+'<td>'+sexual+'</td>'+'<td>'+createTime+'</td>'+
                         '<td style="text-align: center"><button class="layui-btn layui-btn-normal layui-btn-small" id="updatebtn" updateid="'+id+'">修改<i class="layui-icon"></i></button>' +
@@ -93,7 +121,7 @@
         //页面加载绑定事件
         $(document).ready(function () {
             render(1);
-            $('#addbtn').on('click',function () {
+            $('#addbtn').off('click').on('click',function () {
                 //页面层-自定义
                 //iframe层-禁滚动条
                 layer.open({
@@ -124,14 +152,14 @@
             });
 
 
-            $(document).on("click",'#updatebtn',function(){
+            $(document).off('click','#updatebtn').on("click",'#updatebtn',function(){
                 console.log();
                 var updateid = $(this).attr('updateid');
                 //页面层-自定义
                 //iframe层-禁滚动条
                 layer.open({
                     type: 2,
-                    title:'新增用户',
+                    title:'修改用户',
                     area: ['800px','60%'],
                     skin: 'layui-layer-rim', //加上边框
                     content: ['${pageContext.request.contextPath}/admin/updateuserpage?updateid='+updateid],
@@ -155,7 +183,7 @@
                     }
                 });
             });
-            $(document).on("click",'#deletebtn',function () {
+            $(document).off('click','#deletebtn').on("click",'#deletebtn',function () {
                 var id  = $(this).attr('deleteid');
                 swal({
 

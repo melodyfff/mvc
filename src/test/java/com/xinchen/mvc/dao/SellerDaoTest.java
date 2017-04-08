@@ -30,10 +30,10 @@ public class SellerDaoTest {
         xSeller.setSellerId(3);
         xSeller.setSellerName("sam1");
         xSeller.setSellerLogo("test2");
-       logger.info( sellerDao.querySellerById(1));
+//       logger.info( sellerDao.querySellerById(1));
        logger.info(sellerDao.querySellerBySellerId(3));
-       logger.info(sellerDao.updateSeller(xSeller));
-       logger.info(sellerDao.deleteSeller(4));
+//       logger.info(sellerDao.updateSeller(xSeller));
+//       logger.info(sellerDao.deleteSeller(4));
     }
 
     @Test
@@ -43,7 +43,8 @@ public class SellerDaoTest {
         xSeller.setSellerName("sam1");
         xSeller.setSellerLogo("test2");
 //        logger.info(sellerDao.insertSeller(xSeller));
-        logger.info(sellerDao.queryAllSeller("%"));
+//        logger.info(sellerDao.queryAllSeller("sam2%"));
+        logger.info(sellerDao.queryAll());
     }
 
 }

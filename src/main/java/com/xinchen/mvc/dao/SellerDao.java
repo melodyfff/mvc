@@ -29,6 +29,12 @@ public interface SellerDao {
     XSeller querySellerBySellerId(long sellerId);
 
     /**
+     * 查询所有
+     * @return
+     */
+    List<XSeller> queryAll();
+
+    /**
      * 修改seller
      * @param xSeller
      * @return

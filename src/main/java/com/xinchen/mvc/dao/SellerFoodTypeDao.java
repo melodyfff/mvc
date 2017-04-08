@@ -3,6 +3,8 @@ package com.xinchen.mvc.dao;
 import com.xinchen.mvc.model.SellerFoodType;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * Description:
  *
@@ -23,7 +25,13 @@ public interface SellerFoodTypeDao {
      * @param sellerId
      * @return
      */
-    SellerFoodType querySellerFoodTypeBySellerId(long sellerId);
+    List<SellerFoodType> querySellerFoodTypeBySellerId(long sellerId);
+    /**
+     * 检查是否重复
+     * @param sellerId
+     * @return
+     */
+    SellerFoodType querySellerFoodType(@Param("sellerId")long sellerId,@Param("foodType")String foodType);
 
     /**
      * 插入食物列表

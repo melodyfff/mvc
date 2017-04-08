@@ -1,4 +1,3 @@
-/** index.js By Beginner Emain:zheng_jinfan@126.com HomePage:http://www.zhengjinfan.cn */
 
 var tab;
 
@@ -51,8 +50,8 @@ layui.config({
             })
         }
         if(data.field.title == "商家管理"){
-            $.get("http://localhost:8080/mvc/order/orderlist", function(data){
-                $('#content').empty();
+            $.get("http://localhost:8080/mvc/admin/sellermanage", function(data){
+                $('#content').empty().append(data);
             });
         }
         console.log(data.field.title);

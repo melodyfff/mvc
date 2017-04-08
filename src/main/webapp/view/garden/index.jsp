@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +13,16 @@
     <%--<meta name="format-detection" content="telephone=no">--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/plugins/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/global.css" media="all">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/sweetalert.css" media="all">
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/layui/plugins/font-awesome/css/font-awesome.min.css">
+    <script src="${pageContext.request.contextPath}/static/sweetalert.min.js"></script>
 
 </head>
 
 <body>
+<p id="updateinfo" style="display: none">1</p>
+<p id="sellerId" style="display: none">${id}</p>
 <div class="layui-layout layui-layout-admin" style="border-bottom: solid 5px #1aa094;">
     <div class="layui-header header header-demo">
         <div class="layui-main">
@@ -33,6 +38,20 @@
                 <%--</div>--%>
             </div>
             <ul class="layui-nav admin-header-item">
+                <c:if test="${role=='商家'}">
+                <li class="layui-nav-item" id="foodlist">
+                    <a href="javascript:;">
+                        <i class="fa fa-shopping-bag" ></i>
+                        <cite>菜单管理</cite>
+                    </a>
+                </li>
+                    <li class="layui-nav-item" id="sellerinfo">
+                        <a href="javascript:;">
+                            <i class="fa fa-gears"></i>
+                            <cite>店铺信息设置</cite>
+                        </a>
+                    </li>
+                </c:if>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <i class="fa fa-tv" aria-hidden="true"></i>
@@ -45,11 +64,8 @@
                         <span>${userName}(${role})</span>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd>
+                        <dd id="userinfo">
                             <a href="javascript:;"><i class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;"><i class="fa fa-gear" aria-hidden="true"></i> 设置</a>
                         </dd>
                         <dd id="lock">
                             <a href="javascript:;">
@@ -122,6 +138,86 @@
                 var qqq = $('.layui-tab-content');
                 qqq.append(data);
             });
+
+            $('#sellerinfo').off('click').on('click',function () {
+                var updateid = $('#sellerId').text();
+                layer.open({
+
+                    type: 2,
+                    title:'店铺信息',
+                    area: ['800px','60%'],
+                    skin: 'layui-layer-rim', //加上边框
+                    content: ['${pageContext.request.contextPath}/admin/sellerinfo?updateid='+updateid],
+                    cancel: function(){
+                        //右上角关闭回调
+                        $('#updateinfo').text(0);
+                        $('#sellerinfo').removeClass('layui-this');
+                        //return false 开启该代码可禁止点击该按钮关闭
+                    },
+                    end: function () {
+                        var info = $('#updateinfo').text();
+                        if(info!='0'){
+                            swal({
+                                title:"修改成功!",
+                                text:"信息已经修改!",
+                                type:"success"
+                            },function () {
+                                location.reload();
+                            })
+                        }
+                        $('#updateinfo').text(1);
+                    }
+                });
+            });
+
+            $('#userinfo').off('click').on('click',function () {
+                var updateid = $('#sellerId').text();
+                layer.open({
+                    type: 2,
+                    title:'修改用户',
+                    area: ['800px','60%'],
+                    skin: 'layui-layer-rim', //加上边框
+                    content: ['${pageContext.request.contextPath}/admin/userinfo?updateid='+updateid],
+                    cancel: function(){
+                        //右上角关闭回调
+                        $('#updateinfo').text(0);
+                        //return false 开启该代码可禁止点击该按钮关闭
+                    },
+                    end: function (data) {
+                        var info = $('#updateinfo').text();
+                        if(info!='0'){
+                            swal({
+                                title:"修改成功!",
+                                text:"信息已经修改!",
+                                type:"success"
+                            },function () {
+                                location.reload();
+                            })
+                        }
+                        $('#updateinfo').text(1);
+                    }
+                });
+            });
+
+            $('#foodlist').off('click').on('click',function () {
+                var sellerId = $('#sellerId').text();
+                var index =layer.open({
+                    type: 2,
+                    title:'菜单管理',
+                    area: ['80%','80%'],
+                    skin: 'layui-layer-rim', //加上边框
+                    maxmin: true,
+                    content: ['${pageContext.request.contextPath}/food/main?sellerId='+sellerId],
+                    cancel: function(){
+                        //右上角关闭回调
+                        $('#updateinfo').text(0);
+                        //return false 开启该代码可禁止点击该按钮关闭
+                    }
+                });
+                layer.full(index);
+            });
+
+
 
         });
     </script>

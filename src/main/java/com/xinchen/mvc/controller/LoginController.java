@@ -42,6 +42,7 @@ public class LoginController {
             role = userService.queryById(user.getRoleId());
             if(role.getId()==1){
                 ModelAndView mav = new ModelAndView("user/admin");
+                mav.addObject("id",user.getId());
                 mav.addObject("userName", userName);
                 mav.addObject("role", role.getRoleName());
                 return mav;
@@ -53,6 +54,7 @@ public class LoginController {
         logger.info("username="+userName);
         logger.info("password="+passWord);
         ModelAndView mav = new ModelAndView("garden/index");
+        mav.addObject("id",user.getId());
         mav.addObject("userName", userName);
         mav.addObject("role", role.getRoleName());
         return mav;

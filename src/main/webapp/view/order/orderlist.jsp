@@ -35,14 +35,14 @@
     var t1='<li class="fl rest-li">';
     t1+='<div class="j-rest-outer rest-outer transition hover">';
     t1+='<div data-title="'+'${item.sellerName}'+'"data-poiid="144934982538216290" class="restaurant" data-all="1" data-minpricelevel="2">';
-    t1+='<a class="rest-atag" href="${pageContext.request.contextPath}/order/main?sellerId='+'${item.id}'+'" target="_blank">';
+    t1+='<a class="rest-atag" href="${pageContext.request.contextPath}/order/main?sellerId='+'${item.sellerId}'+'" target="_blank">';
     t1+='<div class="top-content">';
     t1+='<div class="preview">';
     t1+='<img data-rid="'+'${item.id}'+'" data-index="0" class="scroll-loading" src="'+'${item.sellerLogo}'+'" data-src="'+'${item.sellerLogo}'+'" data-max-width="208" data-max-height="156">';
     t1+='<div class="rest-tags"> </div> </div> <div class="content">';
     t1+='<div class="name"> <span title="'+'${item.sellerName}'+'">'+'${item.sellerName}'+'</span></div>';
     t1+='<div class="rank clearfix"> <span class="star-ranking fl"> <span class="star-score" style="width: 68px"></span> </span> <span class="score-num fl">'+'${item.scoreNum}'+'</span>';
-    t1+='</div> <div class="price"> <span class="start-price">起送:￥'+'${item.startPrice}'+'</span> <span class="send-price"> '+'${item.sendPrice}'+' </span>';
+    t1+='</div> <div class="price"> <span class="start-price">起送:￥'+'${item.startPrice}'+'</span> <span class="send-price"> 配送费￥'+'${item.sendPrice}'+' </span>';
     t1+='<span class="send-time"><i class="icon i-poi-timer"></i>'+'${item.sendTime}'+'</span> </div></div>';
     t1+='<div class="clear"></div></div></a></div></div></li>';
     uul.innerHTML+=t1;

@@ -12,6 +12,15 @@
         WHERE id = #{id}
     </select>
 
+    <select id="querySellerFoodType" resultType="SellerFoodType">
+        SELECT
+        a.id,
+        a.seller_id,
+        a.food_type
+        FROM kmu_seller_food_type as a
+        WHERE seller_id = #{sellerId} and food_type=#{foodType}
+    </select>
+
     <select id="querySellerFoodTypeBySellerId" parameterType="long" resultType="SellerFoodType">
         SELECT
         a.id,

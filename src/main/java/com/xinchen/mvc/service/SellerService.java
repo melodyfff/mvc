@@ -1,9 +1,10 @@
 package com.xinchen.mvc.service;
 
+import com.github.pagehelper.PageInfo;
 import com.xinchen.mvc.model.XSeller;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+
 
 /**
  * Description:
@@ -27,6 +28,11 @@ public interface SellerService {
      * @return
      */
     XSeller querySellerBySellerId(long sellerId);
+    /**
+     * 查询所有
+     * @return
+     */
+    List<XSeller> queryAll();
 
     /**
      * 修改seller
@@ -53,5 +59,5 @@ public interface SellerService {
      * @param search
      * @return
      */
-    List<XSeller> queryAllSeller(@Param("search") String search);
+    PageInfo<XSeller> queryAllSeller(int start, String search);
 }

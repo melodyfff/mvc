@@ -18,13 +18,35 @@ public class XSeller {
     private int sendTime;
     //起送价格
     private int startPrice;
+    //起送价格
+    private int sendPrice;
     //成立时间
     private Date createTime;
+    //评分
+    private String scoreNum;
 
     public XSeller() {
+        this.scoreNum="4";
         this.sendTime = 30;
         this.startPrice = 0;
-        this.createTime=new Date();
+        this.sendPrice=0;
+//        this.createTime=new Date();
+    }
+
+    public int getSendPrice() {
+        return sendPrice;
+    }
+
+    public void setSendPrice(int sendPrice) {
+        this.sendPrice = sendPrice;
+    }
+
+    public String getScoreNum() {
+        return scoreNum;
+    }
+
+    public void setScoreNum(String scoreNum) {
+        this.scoreNum = scoreNum;
     }
 
     public Date getCreateTime() {
@@ -92,7 +114,9 @@ public class XSeller {
                 ", sellerLogo='" + sellerLogo + '\'' +
                 ", sendTime=" + sendTime +
                 ", startPrice=" + startPrice +
+                ", sendPrice=" + sendPrice +
                 ", createTime=" + createTime +
+                ", scoreNum='" + scoreNum + '\'' +
                 '}';
     }
 }

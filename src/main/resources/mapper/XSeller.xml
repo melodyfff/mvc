@@ -9,7 +9,9 @@
         a.seller_id,
         a.seller_name,
         a.seller_logo,
+        a.score_num,
         a.send_time,
+        a.send_price,
         a.start_price,
         a.create_time
         FROM x_seller as a
@@ -22,7 +24,9 @@
         a.seller_id,
         a.seller_name,
         a.seller_logo,
+        a.score_num,
         a.send_time,
+        a.send_price,
         a.start_price,
         a.create_time
         FROM x_seller as a
@@ -32,25 +36,42 @@
 
     <select id="queryAllSeller" resultType="XSeller">
         SELECT
-        *
+        a.id,
+        a.seller_id,
+        a.seller_name,
+        a.seller_logo,
+        a.score_num,
+        a.send_time,
+        a.send_price,
+        a.start_price,
+        a.create_time
         FROM
         x_seller AS a
+        INNER JOIN x_user AS b ON b.role_id = 3
+        AND a.seller_id = b.id
         <if test="search != null || search != ''">
-            where seller_name like #{search}
+            AND  a.seller_name LIKE #{search}
         </if>
         ORDER BY a.id
     </select>
 
+    <select id="queryAll"  resultType="XSeller">
+        SELECT *
+        FROM x_seller
+    </select>
 
     <insert id="insertSeller">
-        INSERT INTO x_seller (seller_id,seller_name,seller_logo,send_time,start_price,create_time)
-        VALUES (#{sellerId},#{sellerName},#{sellerLogo},#{sendTime},#{startPrice},#{createTime})
+        INSERT INTO x_seller (seller_id,seller_name,seller_logo,score_num,send_time,start_price,send_price,create_time)
+        VALUES (#{sellerId},#{sellerName},#{sellerLogo},#{scoreNum},#{sendTime},#{startPrice},#{sendPrice},#{createTime})
     </insert>
 
     <update id="updateSeller" parameterType="XSeller">
         update x_seller
         set seller_name=#{sellerName},seller_logo=#{sellerLogo},
-        send_time=#{sendTime},start_price=#{startPrice}
+        send_time=#{sendTime},start_price=#{startPrice},send_price=#{sendPrice}
+        <if test="scoreNum != null || scoreNum != ''">
+            ,score_num = #{scoreNum}
+        </if>
         where seller_id = #{sellerId}
     </update>
 
