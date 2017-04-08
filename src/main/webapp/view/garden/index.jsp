@@ -133,8 +133,10 @@
             $('.layui-btn').on('click',function () {
                 layer.msg('hello');
             });
+
+            var myid = $('#sellerId').text();
             //插入content
-            $.get("${pageContext.request.contextPath}/order/orderlist", function(data){
+            $.get("${pageContext.request.contextPath}/order/orderlist?id="+myid, function(data){
                 var qqq = $('.layui-tab-content');
                 qqq.append(data);
             });

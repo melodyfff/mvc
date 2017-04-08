@@ -1,7 +1,10 @@
 package com.xinchen.mvc.controller;
 
+import com.xinchen.mvc.model.XRole;
 import com.xinchen.mvc.model.XSeller;
+import com.xinchen.mvc.model.XUser;
 import com.xinchen.mvc.service.SellerService;
+import com.xinchen.mvc.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,19 +28,30 @@ public class OrderController {
     private final static Logger logger = Logger.getLogger(OrderController.class.getName());
     @Autowired
     private SellerService sellerService;
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/orderlist")
     @ResponseBody
-    public ModelAndView orderlist(){
+    public ModelAndView orderlist(@Param("id")String id){
+        logger.info("用户id="+id);
         ModelAndView mav = new ModelAndView("order/orderlist");
         List<XSeller> sellers = sellerService.queryAll();
         mav.addObject("seller", sellers);
+        mav.addObject("id",id);
         return mav;
     }
 
     @RequestMapping("/main")
-    public ModelAndView index(@Param("sellerId")String sellerId){
+    @ResponseBody
+    public ModelAndView index(@Param("sellerId")String sellerId,@Param("id")String id){
+        logger.info("用户id="+id);
+        XUser xUser = userService.queryByUserId(Long.parseLong(id));
+        XRole xRole = userService.queryById(Long.parseLong(id));
         ModelAndView mav = new ModelAndView("order/orderpage");
         mav.addObject("seller", sellerService.querySellerBySellerId(Long.parseLong(sellerId)));
+        mav.addObject("username",xUser.getUsername());
+        mav.addObject("role",xRole.getRoleName());
         return mav;
     }
 }

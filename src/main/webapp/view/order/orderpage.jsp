@@ -38,41 +38,11 @@
             </div>
             <ul class="layui-nav admin-header-item">
                 <li class="layui-nav-item">
-                    <a href="javascript:;">
-                        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                        <cite>商品管理</cite>
-                    </a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;" data-module-id="3">
-                        <i class="fa fa-users" aria-hidden="true"></i>
-                        <cite>会员管理</cite>
-                    </a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">
-                        <i class="fa fa-tv" aria-hidden="true"></i>
-                        <cite>订单管理</cite>
-                    </a>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">
-                        <i class="fa fa-gears" aria-hidden="true"></i>
-                        <cite>设置</cite>
-                    </a>
-                </li>
-                <li class="layui-nav-item">
                     <a href="javascript:;" class="admin-header-user">
                         <img src="${pageContext.request.contextPath}/layui/images/0.jpg"/>
-                        <span>XC</span>
+                        <span>${username}(${role})</span>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;"><i class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;"><i class="fa fa-gear" aria-hidden="true"></i> 设置</a>
-                        </dd>
                         <dd id="lock">
                             <a href="javascript:;">
                                 <i class="fa fa-lock" aria-hidden="true"
@@ -209,7 +179,6 @@
 </div>
 <!---------js----------->
 <script type="text/javascript" src="${pageContext.request.contextPath}/layui/plugins/layui/layui.js"></script>
-<script src="${pageContext.request.contextPath}/layui/js/index.js"></script>
 <script>
     //Demo
     layui.use('form', function(){
