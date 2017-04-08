@@ -115,7 +115,7 @@
                                 text:"信息已经修改!",
                                 type:"success"
                             },function () {
-                                location.reload();
+                                render(1);
                             })
                         }
                         $('#updateinfo').text(1);
@@ -148,7 +148,7 @@
                                 text:"信息已经修改!",
                                 type:"success"
                             },function () {
-                                location.reload();
+                                render(1);
                             })
                         }
                         $('#updateinfo').text(1);
@@ -188,7 +188,7 @@
                             text:"已成功删除数据！",
                             type:"success"
                         },function () {
-                            location.reload();
+                            render(1);
                         })
 
                     }).error(function(data) {
