@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/plugins/layui/css/layui.css" media="all"/>
@@ -21,13 +21,14 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">种类名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="foodType" maxlength="20" autocomplete="off" class="layui-input">
+                        <input type="text" name="foodType" lay-verify="required" maxlength="20" autocomplete="off"
+                               class="layui-input">
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button class="layui-btn" id="foodTypeAdd">立即提交</button>
+                        <button class="layui-btn" lay-submit="" lay-filter="submitadd" id="foodTypeAdd">立即提交</button>
                     </div>
                 </div>
             </form>
@@ -49,10 +50,24 @@
                         </select>
                     </div>
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">菜名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="foodName" lay-verify="required" maxlength="20" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
 
                 <div class="layui-form-item">
+                    <label class="layui-form-label">价格</label>
                     <div class="layui-input-block">
-                        <button class="layui-btn" id="foodAdd">立即提交</button>
+                        <input type="text" name="foodPrice" lay-verify="numb|required" maxlength="10" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="submitadd2" id="foodAdd">立即提交</button>
                     </div>
                 </div>
             </form>
@@ -66,54 +81,29 @@
             <col width="50">
             <col width="150">
             <col width="150">
-            <col width="200">
-            <col>
+            <col width="150">
         </colgroup>
         <thead>
         <tr>
-            <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
-            <th>人物</th>
-            <th>民族</th>
-            <th>出场时间</th>
-            <th>格言</th>
+            <th>种类</th>
+            <th>菜名</th>
+            <th>价格</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td><input type="checkbox" name="" lay-skin="primary"></td>
-            <td>贤心</td>
-            <td>汉族</td>
-            <td>1989-10-14</td>
-            <td>人生似修行</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="" lay-skin="primary"></td>
-            <td>张爱玲</td>
-            <td>汉族</td>
-            <td>1920-09-30</td>
-            <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="" lay-skin="primary"></td>
-            <td>Helen Keller</td>
-            <td>拉丁美裔</td>
-            <td>1880-06-27</td>
-            <td> Life is either a daring adventure or nothing.</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="" lay-skin="primary"></td>
-            <td>岳飞</td>
-            <td>汉族</td>
-            <td>1103-北宋崇宁二年</td>
-            <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="" lay-skin="primary"></td>
-            <td>孟子</td>
-            <td>华夏族（汉族）</td>
-            <td>公元前-372年</td>
-            <td>猿强，则国强。国强，则猿更强！</td>
-        </tr>
+
+        <c:forEach var="item" items="${sellerFood}">
+            <tr>
+                <td>${item.foodType}</td>
+                <td>${item.foodName}</td>
+                <td>${item.foodPrice}</td>
+                <td style="text-align: center">
+                    <button class="layui-btn layui-btn-danger layui-btn-small" id="fooddeletebtn" sellerId="${item.sellerId}" deleteid="${item.id}">
+                        删除<i class="layui-icon"></i></button>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>
@@ -130,62 +120,126 @@
         //监听折叠
         element.on('collapse(test)', function (data) {
 //            layer.msg('展开状态：'+ data.show);
-            console.log("${sellerFoodTypes}")
         });
+
         //页面加载绑定事件
         $(document).ready(function () {
-            $('#errormsg').text(1);
-            <%--var result = "";--%>
-            <%--<c:forEach var="item" items="${sellerFoodTypes}" varStatus="se">--%>
-            <%--<option value="${item.foodType}">${item.foodType}</option> --%>
-                <%--</c:forEach>--%>
-            <%--$('#foodtypelists').append();--%>
-        });
-        //自定义验证规则
-        form.verify({
-            title: function (value) {
-                if (value.length < 5) {
-                    return '用户名得5个字符啊';
-                }
-            }
-            , pass: [/(.+){6,12}$/, '密码必须6到12位']
-            , content: function (value) {
-                layedit.sync(editIndex);
-            }
-            , scroe: [/[0-5]/, '评分在0-5之间']
-            , numb: [/^[0-9]*$/, '请输入数字']
-        });
-
-
-        $('#foodTypeAdd').on('click', function () {
-            $.ajax({
-
-                url: "${pageContext.request.contextPath}/food/addFoodType",
-//                async:false,
-                type: "GET",
-                data: $('#addFoodType').serialize(),
-                success: function (data) {
-                    console.log(data);
-                    console.log(data.status);
-
-                    if (data.status == 1) {
-//                        parent.layer.close(index);
-                        swal("Good job!", "You clicked the button!", "success");
-                    } else {
-                        $('#errormsg').text(data.errmsg);
-                        swal("OMG", "新增操作失败了!", "error");
+            //自定义验证规则
+            form.verify({
+                title: function (value) {
+                    if (value.length < 5) {
+                        return '用户名得5个字符啊';
                     }
                 }
+                , pass: [/(.+){6,12}$/, '密码必须6到12位']
+                , content: function (value) {
+                    layedit.sync(editIndex);
+                }
+                , scroe: [/[0-5]/, '评分在0-5之间']
+                , numb: [/^[0-9]*$/, '请输入数字']
             });
 
-        })
+            form.on('submit(submitadd)', function (data) {
+                var index = parent.layer.getFrameIndex(window.name)
+                $.ajax({
 
-        if ($('#errormsg').text() != '1' || $('#errormsg').text() != 1) {
-            console.log($('#errormsg').text());
-            swal("OMG", "新增操作失败了!", "error");
-            $('#errormsg').empty().text('1');
-        }
-    });
+                    url: "${pageContext.request.contextPath}/food/addFoodType",
+//                async:false,
+                    type: "GET",
+                    data: $('#addFoodType').serialize(),
+                    success: function (data) {
+                        console.log(data);
+                        console.log(data.status);
+
+                        if (data.status == 1) {
+                            swal({
+                                title: "操作成功!",
+                                text: "已成功添加！",
+                                type: "success"
+                            }, function () {
+                                location.reload();
+                            })
+                        } else {
+                            $('#errormsg').text(data.errmsg);
+                            swal("OMG", "操作失败了,该种类已经存在!", "error");
+                        }
+                    }
+                });
+                return false;
+            });
+
+            form.on('submit(submitadd2)', function (data) {
+                $.ajax({
+
+                    url: "${pageContext.request.contextPath}/food/addFood",
+                    type: "GET",
+                    data: $('#addFood').serialize(),
+                    success: function (data) {
+                        console.log(data);
+                        console.log(data.status);
+
+                        if (data.status == 1) {
+//                        parent.layer.close(index);
+                            swal({
+                                title: "操作成功!",
+                                text: "已成功添加！",
+                                type: "success"
+                            }, function () {
+                                location.reload();
+                            })
+                        } else {
+                            $('#errormsg').text(data.errmsg);
+                            swal("OMG", "操作失败了!", "error");
+                        }
+                    }
+                });
+            });
+            $(document).off('click', '#fooddeletebtn').on("click", '#fooddeletebtn', function () {
+                var deleteId = $(this).attr('deleteid');
+                swal({
+
+                    title: "您确定要删除吗？",
+
+                    text: "您确定要删除这条数据？",
+
+                    type: "warning",
+
+                    showCancelButton: true,
+
+                    closeOnConfirm: false,
+
+                    confirmButtonText: "是的，我要删除",
+
+                    confirmButtonColor: "#ec6c62"
+
+                }, function() {
+
+                    $.ajax({
+
+                        url: "${pageContext.request.contextPath}/food/deletefood?deleteid="+deleteId,
+
+                        type: "GET",
+
+                    }).done(function(data) {
+
+                        swal({
+                            title:"操作成功!",
+                            text:"已成功删除数据！",
+                            type:"success"
+                        },function () {
+                            location.reload();
+                        })
+
+                    }).error(function(data) {
+                        swal("OMG", "删除操作失败了!", "error");
+                    });
+
+                });
+            })
+
+        });
+
+    })
 </script>
 </body>
 </html>

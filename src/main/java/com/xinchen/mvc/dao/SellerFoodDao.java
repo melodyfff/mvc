@@ -48,4 +48,11 @@ public interface SellerFoodDao {
      * @return
      */
     int deleteSellerFood(@Param("sellerId") long sellerId,@Param("foodName") String foodName);
+
+    /**
+     * 根据ID删除食物
+     * @param id
+     * @return
+     */
+    int deleteSellerFoodById(long id);
 }

@@ -87,4 +87,9 @@ public class SellerFoodServiceImpl implements SellerFoodService {
     public int deleteSellerFood(long sellerId, String foodName) {
         return sellerFoodDao.deleteSellerFood(sellerId, foodName);
     }
+
+    @Override
+    public int deleteSellerFoodById(long id) {
+        return sellerFoodDao.deleteSellerFoodById(id);
+    }
 }

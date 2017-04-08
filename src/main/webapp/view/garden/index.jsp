@@ -211,6 +211,7 @@
                     cancel: function(){
                         //右上角关闭回调
                         $('#updateinfo').text(0);
+                        $('#foodlist').removeClass('layui-this');
                         //return false 开启该代码可禁止点击该按钮关闭
                     }
                 });

@@ -89,4 +89,10 @@ public interface SellerFoodService {
      * @return
      */
     int deleteSellerFood(long sellerId,String foodName);
+    /**
+     * 根据ID删除食物
+     * @param id
+     * @return
+     */
+    int deleteSellerFoodById(long id);
 }

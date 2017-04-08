@@ -25,6 +25,7 @@
         a.food_price
         FROM kmu_seller_food as a
         WHERE  seller_id= #{sellerId}
+        ORDER BY food_type
     </select>
 
     <insert id="insertSellerFood">
@@ -41,5 +42,8 @@
 
     <delete id="deleteSellerFood">
         delete from kmu_seller_food where seller_id = #{sellerId} and food_name=#{foodName}
+    </delete>
+    <delete id="deleteSellerFoodById" parameterType="long">
+        delete from kmu_seller_food where id =  #{id}
     </delete>
 </mapper>
