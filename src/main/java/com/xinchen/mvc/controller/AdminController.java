@@ -43,6 +43,12 @@ public class AdminController {
         return "/user/usermanage";
     }
 
+    /**
+     * 分页
+     * @param curr
+     * @param search
+     * @return
+     */
     @RequestMapping("userList")
     @ResponseBody
     public PageInfo getUserList(@Param("curr")String curr,@Param("search")String search){

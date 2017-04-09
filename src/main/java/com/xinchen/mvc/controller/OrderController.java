@@ -2,6 +2,8 @@ package com.xinchen.mvc.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xinchen.mvc.base.ResponseJson;
 import com.xinchen.mvc.model.*;
 import com.xinchen.mvc.service.OrderService;
@@ -94,6 +96,19 @@ public class OrderController {
     public ModelAndView forwardOrderManage(){
         ModelAndView mav = new ModelAndView("order/ordermanage");
         return mav;
+    }
+
+    @RequestMapping("ordermanageMain")
+    @ResponseBody
+    public PageInfo forwardOrderManageMain(@RequestParam("curr") String curr,
+                                           @RequestParam("startTime") String startTime,
+                                           @RequestParam("endTime") String endTime,
+                                           @RequestParam("sellerId") String sellerId,
+                                           @RequestParam("userId") String userId){
+        long temp1 = Long.parseLong(sellerId);
+        long temp2 = Long.parseLong(userId);
+        PageInfo pageInfo = orderService.queryAllOrderList(Integer.parseInt(curr),startTime,endTime,temp1,temp2);
+        return pageInfo;
     }
 
     /**

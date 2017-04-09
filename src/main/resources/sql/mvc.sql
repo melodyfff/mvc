@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2017-04-09 01:23:33
+Date: 2017-04-09 22:55:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,74 +33,17 @@ CREATE TABLE `kmu_order_list` (
   `state` int(1) DEFAULT '0',
   `date` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of kmu_order_list
 -- ----------------------------
-INSERT INTO `kmu_order_list` VALUES ('1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2017-04-19 23:13:31');
-INSERT INTO `kmu_order_list` VALUES ('3', '1', null, '1', null, null, null, null, null, '0', '0', '2017-04-07 23:14:24');
-
--- ----------------------------
--- Table structure for kmu_sellershow
--- ----------------------------
-DROP TABLE IF EXISTS `kmu_sellershow`;
-CREATE TABLE `kmu_sellershow` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `seller_id` bigint(20) NOT NULL,
-  `seller_name` varchar(255) NOT NULL,
-  `seller_url` varchar(255) NOT NULL,
-  `seller_logo` varchar(255) NOT NULL,
-  `score_num` double(5,0) DEFAULT NULL,
-  `start_price` int(11) DEFAULT NULL,
-  `send_time` int(11) DEFAULT NULL,
-  `send_price` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of kmu_sellershow
--- ----------------------------
-INSERT INTO `kmu_sellershow` VALUES ('64', '2', '楚渝老麻抄手', '11111111111', 'http://p1.meituan.net/xianfu/0b9ac31440b0643220d9e0827ea1318642564.jpg', '4', '15', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('65', '3', '东北小吃（新天地步行街店）', '11111111111', 'http://p1.meituan.net/xianfu/70869fe207a0e5df5870db59825f5e95186929.jpg', '4', '10', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('66', '4', '辣有道麻辣香锅', '11111111111', 'http://p0.meituan.net/xianfu/d6e3b2dd807fdaf1bcc465876857d032266240.jpg', '4', '20', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('67', '5', '靖子家土耳其烤肉木桶饭', '11111111111', 'http://p1.meituan.net/xianfu/b8bcd8d475dad9cd8c0a409f9bf1f21742299.jpg', '4', '10', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('68', '6', '黄焖鸡米饭', '11111111111', 'http://p0.meituan.net/xianfu/d089a232288d504f7c4e64861e7ea20d30720.jpg', '4', '0', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('69', '7', '当麦基（昆工店）', '11111111111', 'http://p0.meituan.net/xianfu/43b31430f65e4a7ac630e2837957590d82289.jpg', '4', '20', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('70', '8', '半亩园烤肉脆皮鸡饭', '11111111111', 'http://p1.meituan.net/xianfu/aadea49e0e27d759d3e958eda8ac9ed245056.jpg', '4', '12', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('71', '9', '百碗香卤肉饭', '11111111111', 'http://p0.meituan.net/xianfu/11dd424197922267adf1f8973a4c196226624.jpg', '4', '0', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('72', '10', '吖咪甜品', '11111111111', 'http://p1.meituan.net/xianfu/93d0495b10b664b85cc263a32ad2613b28672.jpg', '4', '16', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('73', '11', '周记黑鸭', '11111111111', 'http://p1.meituan.net/xianfu/904a8fae0a27b953b434bf21a67817ae10240.jpeg', '4', '20', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('74', '12', '一贯烧快捷餐厅（大学城店）', '11111111111', 'http://p0.meituan.net/xianfu/89cffac07c383e648aa64e5cfdee0a1229465.jpg', '4', '10', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('75', '13', '顿顿披萨', '11111111111', 'http://p1.meituan.net/xianfu/cb6f87452f48e4bac96e4060a8a55583461341.jpg', '4', '20', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('76', '14', '碗碗香卤肉饭', '11111111111', 'http://p1.meituan.net/xianfu/5d12605401ce4d45c3c9ea80869c4714210014.jpg', '4', '10', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('77', '15', '四川宜宾燃面', '11111111111', 'http://p1.meituan.net/xianfu/57117391b33e6590ee9251072823cc4b229434.jpg', '4', '11', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('78', '16', '北北饺子宴', '11111111111', 'http://p0.meituan.net/xianfu/757559d5a7b5555cd4bfd157d4acf8b828672.jpg', '4', '10', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('79', '17', '大学时代', '11111111111', 'http://p1.meituan.net/xianfu/1afb4627e41d2253f6bf572d8efba78134816.jpg', '4', '10', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('80', '18', '重庆鸡公煲（步行街店）', '11111111111', 'http://p1.meituan.net/xianfu/4f76746e44401112d5065a1a55d1d79c41328.jpg', '4', '15', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('81', '19', '外婆家的私房小锅米线', '11111111111', 'http://p0.meituan.net/xianfu/ef257aa7495fff38ab078e068dd791de34816.jpg', '4', '11', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('82', '20', '尝一口鸡脚', '11111111111', 'http://p1.meituan.net/xianfu/c4df6a841824bedbcffb561c19b6b71a53530.jpg', '4', '30', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('83', '21', '弥勒竹园卤鸡米线', '11111111111', 'http://p1.meituan.net/xianfu/79f9636514ed26352e0da79e9391eed934816.jpg', '4', '12', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('84', '22', '德克士（易初莲花店）', '11111111111', 'http://p0.meituan.net/xianfu/4e634ada59b52ae7eb09990158a0a7626855.jpeg', '4', '30', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('85', '23', '华莱士（水晶郦城）', '11111111111', 'http://p0.meituan.net/xianfu/459d9c6d5a400ed231b97a8fc5f0d9bc6955.jpeg', '4', '30', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('86', '24', '麦丰荷叶饭', '11111111111', 'http://p1.meituan.net/xianfu/51dc2f7947e05dede5e999f230381375268299.jpg', '4', '15', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('87', '25', '林妹妹沾水米线（冉家坝店）', '11111111111', 'http://p0.meituan.net/xianfu/f0472fb3a5a2d1a9bbf7005a4c37a033117274.jpg', '4', '15', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('88', '26', '尊宝比萨（北环店）', '11111111111', 'http://p0.meituan.net/xianfu/e02898a6d72eababb1903f678cc50c4f5243.jpeg', '4', '30', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('89', '27', '华莱士【冉家坝】', '11111111111', 'http://p0.meituan.net/xianfu/459d9c6d5a400ed231b97a8fc5f0d9bc6955.jpeg', '4', '35', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('90', '28', '丰寿司居酒屋', '11111111111', 'http://p0.meituan.net/xianfu/7e85d929932b69e24a1d8d5c8c408d67122726.png', '4', '20', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('91', '29', '便当骑士【美团特推】', '11111111111', 'http://p0.meituan.net/xianfu/2514635a405e3a409908d30f32fa68e130720.jpg', '4', '15', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('92', '30', '乡村基（北部新区星湖路餐厅）', '11111111111', 'http://p1.meituan.net/xianfu/e6edd45efc4a6f9e33310a9972cfa18f7532.jpeg', '4', '0', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('93', '31', '乡村基（财富中心餐厅）', '11111111111', 'http://p1.meituan.net/xianfu/e6edd45efc4a6f9e33310a9972cfa18f7532.jpeg', '4', '0', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('94', '32', '汉城烤肉馆（韩式拌饭）', '11111111111', 'http://p0.meituan.net/xianfu/79e932cb52d77eaf3f5730b2f13e08f363488.jpg', '4', '20', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('95', '33', '肯德基宅急送（星湖路店）', '11111111111', 'http://p0.meituan.net/xianfu/0016f9e2ec997b0ff9f744ec0b9142d415083.jpeg', '4', '0', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('96', '34', '家常味', '11111111111', 'http://p0.meituan.net/xianfu/04aaf2856569803ec0152ef683e5b812348489.jpg', '4', '20', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('97', '35', '加班狗爆款美食（冉家坝店）', '11111111111', 'http://p1.meituan.net/xianfu/2bbfc3c37b4d87a59bb687dff4d08bfc247766.jpg', '4', '0', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('98', '36', '垫江石磨豆花（龙山分店）', '11111111111', 'http://p1.meituan.net/xianfu/685b32ee8c700e09e1eb3e214492f05c355711.jpg', '4', '15', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('99', '37', '小矮牛披萨（龙湖水晶郦城店）', '11111111111', 'http://p1.meituan.net/xianfu/badb27fb2e067ea2686a855b4ccb6f50198289.jpg', '4', '20', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('100', '38', '守柴炉北京烤鸭（北环店）', '11111111111', 'http://p1.meituan.net/xianfu/aeda92a577e6bd91d4e24af2c8fced758547.jpeg', '4', '20', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('101', '39', '陶然居（巾帼酒店）', '11111111111', 'http://p0.meituan.net/xianfu/ff334f2db46b0c2e2d0f3b699408c4cc19051.jpg', '4', '20', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('102', '40', 'HiRice饭来了（财富中心店）', '11111111111', 'http://p1.meituan.net/xianfu/92a73a00fc9cf92d347fe9f3b9eccb4541050.jpg', '4', '0', '40', '0');
-INSERT INTO `kmu_sellershow` VALUES ('103', '41', '711（渝北双子座）', '11111111111', 'http://p1.meituan.net/xianfu/ac450c0d091a5982ca5a6e31c971cfed11715.jpg', '4', '30', '40', '0');
+INSERT INTO `kmu_order_list` VALUES ('4', '3', '东北小吃（新天地步行街店）', '3', '测试', '11111111111', '怡园A', '辣一点', '皇帝炒饭  ', '1998', '0', '2017-04-09 17:09:56');
+INSERT INTO `kmu_order_list` VALUES ('5', '3', '东北小吃（新天地步行街店）', '3', '测试', '11111111111', '怡园A', '怡园1栋1137', '皇帝炒饭  ', '999', '0', '2017-04-09 17:11:36');
+INSERT INTO `kmu_order_list` VALUES ('6', '3', '东北小吃（新天地步行街店）', '3', '测试3', '11111111111', '憬园B', '1137', '皇帝炒饭X1#皇帝米线X1#尊贵套X1#尊贵套二X1#', '3994', '0', '2017-04-09 17:13:21');
+INSERT INTO `kmu_order_list` VALUES ('7', '3', '东北小吃（新天地步行街店）', '43', '测试4', '11111111111', '怡园A', '', '皇帝炒饭X1#皇帝米线X1#尊贵套X1#尊贵套二X2#', '4992', '0', '2017-04-09 18:13:34');
+INSERT INTO `kmu_order_list` VALUES ('8', '3', '东北小吃（新天地步行街店）', '43', '123123', '11111111111', '憬园B', '', '皇帝米线X1#尊贵套二X1#', '1997', '0', '2017-04-09 18:14:08');
+INSERT INTO `kmu_order_list` VALUES ('9', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
 
 -- ----------------------------
 -- Table structure for kmu_seller_food
@@ -114,19 +57,17 @@ CREATE TABLE `kmu_seller_food` (
   `food_name` varchar(255) NOT NULL,
   `food_price` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of kmu_seller_food
 -- ----------------------------
 INSERT INTO `kmu_seller_food` VALUES ('1', '1', '1', '1', '1', '1');
-INSERT INTO `kmu_seller_food` VALUES ('8', '3', '东北小吃（新天地步行街店）', 'sdasdsad', 'dsad', '23');
-INSERT INTO `kmu_seller_food` VALUES ('9', '3', '东北小吃（新天地步行街店）', 'xxxx', 'dds', '22');
-INSERT INTO `kmu_seller_food` VALUES ('10', '3', '东北小吃（新天地步行街店）', 'dasd', '查查', '22');
-INSERT INTO `kmu_seller_food` VALUES ('11', '3', '东北小吃（新天地步行街店）', 'dasd', '当前', '23');
-INSERT INTO `kmu_seller_food` VALUES ('12', '3', '东北小吃（新天地步行街店）', 'dasd', '213', '223');
-INSERT INTO `kmu_seller_food` VALUES ('15', '3', '东北小吃（新天地步行街店）', '测试', '车擦擦擦', '23');
-INSERT INTO `kmu_seller_food` VALUES ('16', '3', '东北小吃（新天地步行街店）', '测试3', '啊啊啊', '234');
+INSERT INTO `kmu_seller_food` VALUES ('20', '3', '东北小吃（新天地步行街店）', '皇帝套餐', '皇帝炒饭', '999');
+INSERT INTO `kmu_seller_food` VALUES ('21', '4', '辣有道麻辣香锅', '昆工屌丝套餐', '屌丝香锅', '25');
+INSERT INTO `kmu_seller_food` VALUES ('22', '3', '东北小吃（新天地步行街店）', '尊贵套餐', '尊贵套', '998');
+INSERT INTO `kmu_seller_food` VALUES ('23', '3', '东北小吃（新天地步行街店）', '皇帝套餐', '皇帝米线', '999');
+INSERT INTO `kmu_seller_food` VALUES ('24', '3', '东北小吃（新天地步行街店）', '尊贵套餐', '尊贵套二', '998');
 
 -- ----------------------------
 -- Table structure for kmu_seller_food_type
@@ -137,37 +78,16 @@ CREATE TABLE `kmu_seller_food_type` (
   `seller_id` int(11) NOT NULL,
   `food_type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of kmu_seller_food_type
 -- ----------------------------
 INSERT INTO `kmu_seller_food_type` VALUES ('1', '2', 'dasd');
 INSERT INTO `kmu_seller_food_type` VALUES ('2', '2', 'dasda');
-INSERT INTO `kmu_seller_food_type` VALUES ('3', '3', 'qweqwe');
-INSERT INTO `kmu_seller_food_type` VALUES ('4', '3', 'sdasdsad');
-INSERT INTO `kmu_seller_food_type` VALUES ('5', '3', 'xxxx');
-INSERT INTO `kmu_seller_food_type` VALUES ('6', '3', 'cacaca');
-INSERT INTO `kmu_seller_food_type` VALUES ('7', '3', 'dasd');
-INSERT INTO `kmu_seller_food_type` VALUES ('8', '3', 'asdd');
-INSERT INTO `kmu_seller_food_type` VALUES ('9', '3', 'asdsa');
-INSERT INTO `kmu_seller_food_type` VALUES ('10', '3', 'das');
-INSERT INTO `kmu_seller_food_type` VALUES ('11', '3', 'cccc');
-INSERT INTO `kmu_seller_food_type` VALUES ('12', '3', '123123');
-INSERT INTO `kmu_seller_food_type` VALUES ('13', '3', '123');
-INSERT INTO `kmu_seller_food_type` VALUES ('14', '3', 'sadasd');
-INSERT INTO `kmu_seller_food_type` VALUES ('15', '3', 'csac');
-INSERT INTO `kmu_seller_food_type` VALUES ('16', '3', '啊擦擦');
-INSERT INTO `kmu_seller_food_type` VALUES ('18', '3', 'sdsss');
-INSERT INTO `kmu_seller_food_type` VALUES ('19', '3', '啊啊啊');
-INSERT INTO `kmu_seller_food_type` VALUES ('20', '3', '');
-INSERT INTO `kmu_seller_food_type` VALUES ('21', '3', '测测测');
-INSERT INTO `kmu_seller_food_type` VALUES ('22', '3', '测测测测');
-INSERT INTO `kmu_seller_food_type` VALUES ('23', '3', '擦擦擦擦擦');
-INSERT INTO `kmu_seller_food_type` VALUES ('24', '3', '2323');
-INSERT INTO `kmu_seller_food_type` VALUES ('25', '3', '此处是');
-INSERT INTO `kmu_seller_food_type` VALUES ('26', '3', '测试');
-INSERT INTO `kmu_seller_food_type` VALUES ('27', '3', '测试3');
+INSERT INTO `kmu_seller_food_type` VALUES ('29', '3', '皇帝套餐');
+INSERT INTO `kmu_seller_food_type` VALUES ('30', '4', '昆工屌丝套餐');
+INSERT INTO `kmu_seller_food_type` VALUES ('31', '3', '尊贵套餐');
 
 -- ----------------------------
 -- Table structure for x_role
@@ -263,7 +183,7 @@ CREATE TABLE `x_user` (
   `name` varchar(255) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`,`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of x_user
@@ -309,3 +229,8 @@ INSERT INTO `x_user` VALUES ('40', 'test40', 'ee11cbb19052e40b07aac0ca060c23ee',
 INSERT INTO `x_user` VALUES ('41', 'test41', 'ee11cbb19052e40b07aac0ca060c23ee', '3', '11111111111', '这是一个地址', '123@qq.com', '女', '姓名', '2017-04-08 16:06:21');
 INSERT INTO `x_user` VALUES ('42', 'wowowow', 'b7f7b5a6fdca58b0f09ee400e5d880f1', '2', '11111111111', 'wowowow', 'wowowow@q.com', '男', 'wowowow', '2017-04-08 17:07:31');
 INSERT INTO `x_user` VALUES ('43', 'mytest', 'e10adc3949ba59abbe56e057f20f883e', '2', '11111111111', '111111111111111111', '11111@qq.com', '男', 'ascsa', '2017-04-08 17:30:51');
+INSERT INTO `x_user` VALUES ('44', 'mytest33', 'e10adc3949ba59abbe56e057f20f883e', '2', '11111111111', '111111111111', '111@qq.com', '男', '1111111', '2017-04-09 18:53:36');
+INSERT INTO `x_user` VALUES ('46', 'mytest5', 'e10adc3949ba59abbe56e057f20f883e', '2', '12333333333', '123', '1@qq.com', '男', '123', '2017-04-09 18:57:39');
+INSERT INTO `x_user` VALUES ('47', 'mytest7', 'e10adc3949ba59abbe56e057f20f883e', '2', '11111111111', '11', '1112@qq.com', '男', '111', '2017-04-09 19:02:25');
+INSERT INTO `x_user` VALUES ('48', 'test77', 'bbb8aae57c104cda40c93843ad5e6db8', '2', '12231111111', '123', '1@qq.com', '男', '123', '2017-04-09 19:03:23');
+INSERT INTO `x_user` VALUES ('49', 'mytest99', 'adbc91a43e988a3b5b745b8529a90b61', '2', '11111111111', '111111111111111', '111111@q.com', '男', '111111111111', '2017-04-09 19:05:07');
