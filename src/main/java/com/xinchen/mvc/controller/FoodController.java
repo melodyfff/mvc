@@ -90,4 +90,17 @@ public class FoodController {
         JSONObject jsonStu = (JSONObject) JSON.toJSON(my);
         return jsonStu;
     }
+
+    @RequestMapping(value = "deletefoodtype")
+    @ResponseBody
+    public JSONObject deleteFoodType(@Param("sellerId") String sellerId,@Param("foodType") String foodType){
+        logger.info(sellerId);
+        String msg = "删除成功";
+        int result = sellerFoodService.deleteSellerFoodType(Long.parseLong(sellerId),foodType);
+        ResponseJson<SellerFood> my = new ResponseJson<SellerFood>();
+        my.setStatus(result);
+        my.setErrmsg(msg);
+        JSONObject jsonStu = (JSONObject) JSON.toJSON(my);
+        return jsonStu;
+    }
 }

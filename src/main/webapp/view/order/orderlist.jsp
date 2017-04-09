@@ -19,15 +19,15 @@
 <div class="container">
     <div class="container-fluid">
         <div class="rest-list">
-            <p id="myyid" style="display: none">${id}</p>
+            <p id="myyid" style="display: none">${userid}</p>
             <ul class="list clearfix" id="mainul">
                 <c:forEach var="item" items="${seller}" varStatus="se">
                     <li class="fl rest-li">
                         <div class="j-rest-outer rest-outer transition hover">
                             <div data-title="${item.sellerName}" data-poiid="144934982538216290" class="restaurant"
                                  data-all="1" data-minpricelevel="2">
-                                <a class="rest-atag"
-                                   href="${pageContext.request.contextPath}/order/main?sellerId=${item.sellerId}"
+                                <a class="rest-atag" id="forwardOrder"
+                                   href="${pageContext.request.contextPath}/order/main?sellerId=${item.sellerId}&userId=${userid}"
                                    target="_blank">
                                     <div class="top-content">
                                         <div class="preview">

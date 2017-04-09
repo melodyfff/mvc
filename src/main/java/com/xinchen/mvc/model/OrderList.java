@@ -38,6 +38,7 @@ public class OrderList {
 
     public OrderList() {
         this.state = 0;
+        this.date = new Date();
     }
 
     @Override

@@ -43,6 +43,9 @@
     <delete id="deleteSellerFood">
         delete from kmu_seller_food where seller_id = #{sellerId} and food_name=#{foodName}
     </delete>
+    <delete id="deleteType">
+        delete from kmu_seller_food where seller_id = #{sellerId} and food_type=#{foodType}
+    </delete>
     <delete id="deleteSellerFoodById" parameterType="long">
         delete from kmu_seller_food where id =  #{id}
     </delete>

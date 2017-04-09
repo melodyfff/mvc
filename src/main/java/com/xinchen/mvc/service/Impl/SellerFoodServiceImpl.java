@@ -57,6 +57,11 @@ public class SellerFoodServiceImpl implements SellerFoodService {
 
     @Override
     public int deleteSellerFoodType(long sellerId, String foodType) {
+        logger.info(sellerId+"--》进行种类删除操作------"+foodType);
+        //删除种类同时删除食物表里面
+        logger.info("删除食物表中的种类------"+foodType);
+        sellerFoodDao.deleteType(sellerId,foodType);
+        logger.info("删除食物种类表中的种类-------"+foodType);
         return sellerFoodTypeDao.deleteSellerFoodType(sellerId, foodType);
     }
 

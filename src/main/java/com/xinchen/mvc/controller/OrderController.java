@@ -1,8 +1,11 @@
 package com.xinchen.mvc.controller;
 
-import com.xinchen.mvc.model.XRole;
-import com.xinchen.mvc.model.XSeller;
-import com.xinchen.mvc.model.XUser;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.xinchen.mvc.base.ResponseJson;
+import com.xinchen.mvc.model.*;
+import com.xinchen.mvc.service.OrderService;
+import com.xinchen.mvc.service.SellerFoodService;
 import com.xinchen.mvc.service.SellerService;
 import com.xinchen.mvc.service.UserService;
 import org.apache.ibatis.annotations.Param;
@@ -10,6 +13,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,32 +30,62 @@ import java.util.List;
 @RequestMapping("/order")
 public class OrderController {
     private final static Logger logger = Logger.getLogger(OrderController.class.getName());
+
     @Autowired
     private SellerService sellerService;
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SellerFoodService foodService;
+
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping("/orderlist")
     @ResponseBody
     public ModelAndView orderlist(@Param("id")String id){
-        logger.info("用户id="+id);
-        ModelAndView mav = new ModelAndView("order/orderlist");
+        logger.info("用户"+id+"--->进入商品选择页面");
+
         List<XSeller> sellers = sellerService.queryAll();
+
+        ModelAndView mav = new ModelAndView("order/orderlist");
         mav.addObject("seller", sellers);
-        mav.addObject("id",id);
+        mav.addObject("userid",id);
         return mav;
     }
 
     @RequestMapping("/main")
     @ResponseBody
-    public ModelAndView index(@Param("sellerId")String sellerId,@Param("id")String id){
-        logger.info("用户id="+id);
-        XUser xUser = userService.queryByUserId(Long.parseLong(id));
-        XRole xRole = userService.queryById(Long.parseLong(id));
+    public ModelAndView index(@RequestParam("sellerId")String sellerId,@RequestParam("userId")String userid){
+        logger.info("用户"+userid+"--->进入商品选择页面");
+
+        XUser xUser = userService.queryByUserId(Long.parseLong(userid));
+        XRole xRole = userService.queryById(Long.parseLong(userid));
+        List<SellerFoodType> foodTypes = foodService.querySellerFoodTypeBySellerId(Long.parseLong(sellerId));
+        List<SellerFood> foods = foodService.querySellerFoodBySellerId(Long.parseLong(sellerId));
+
         ModelAndView mav = new ModelAndView("order/orderpage");
         mav.addObject("seller", sellerService.querySellerBySellerId(Long.parseLong(sellerId)));
         mav.addObject("username",xUser.getUsername());
         mav.addObject("role",xRole.getRoleName());
+        mav.addObject("foodTypes",foodTypes);
+        mav.addObject("foods",foods);
+        mav.addObject("userId",userid);
         return mav;
+    }
+
+    @RequestMapping("/addOrderList")
+    @ResponseBody
+    public JSONObject addOrderList(OrderList orderList){
+        logger.info(orderList);
+        int result = orderService.insertOrderList(orderList);
+        String msg = "新增成功";
+        ResponseJson<OrderList> my = new ResponseJson<OrderList>();
+        my.setStatus(result);
+        my.setErrmsg(msg);
+        JSONObject jsonStu = (JSONObject) JSON.toJSON(my);
+        return jsonStu;
     }
 }

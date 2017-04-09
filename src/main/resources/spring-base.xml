@@ -64,6 +64,12 @@
         </property>
     </bean>
 
+    <!-- 事物 -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <tx:annotation-driven transaction-manager="txManager" />
+
     <!--配置扫描DAO接口包，动态实现DAO接口，并注入到spring容器中-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--注入sqlSessionFactory  使用sqlSessionFactoryBeanName防止提前初始化sqlSessionFactory-->

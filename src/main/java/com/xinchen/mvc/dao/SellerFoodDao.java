@@ -55,4 +55,12 @@ public interface SellerFoodDao {
      * @return
      */
     int deleteSellerFoodById(long id);
+
+    /**
+     * 根据商家ID和食物种类删除
+     * @param sellerId
+     * @param foodType
+     * @return
+     */
+    int deleteType(@Param("sellerId")long sellerId,@Param("foodType")String foodType);
 }
