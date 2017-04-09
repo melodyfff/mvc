@@ -32,9 +32,8 @@
                 <input type="password" name="passWord" required  lay-verify="required" lay-verify="password" autocomplete="off" placeholder="这里输入密码" class="layui-input">
             </div>
             <div class="layui-form-item">
-                <div class="beg-pull-left beg-login-remember">
-                    <label>记住帐号？</label>
-                    <input type="checkbox" name="rememberMe" value="true" lay-skin="switch" checked title="记住帐号">
+                <div class="beg-pull-left">
+                    <label><a href="#">还没有账号？</a></label>
                 </div>
                 <div class="beg-pull-right">
                     <button class="layui-btn layui-btn-primary" lay-submit lay-filter="login">
@@ -46,7 +45,8 @@
         </form>
     </div>
     <footer>
-        <p>计科13级 © 刘戬</p>
+        <p>计科13级 © 刘戬 </p>
+
     </footer>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/layui/plugins/layui/layui.js"></script>

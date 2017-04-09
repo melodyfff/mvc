@@ -11,27 +11,21 @@ var navs = [{
         "icon": "&#xe641;",
         "href": "javascript:;"
     },{
-		"title": "校园甜点",
+		"title": "校园外卖",
 		"icon": "&#xe63c;",
 		"href": "javascript:;"
 	}, {
-		"title": "校园饮品",
+		"title": "校园精选",
 		"icon": "&#xe63c;",
 		"href": "javascript:;"
 	}]
 }, {
     "title": "不一样的美食",
     "icon": "fa-stop-circle",
-    "href": "https://www.baidu.com",
-    "spread": false
-}, {
-    "title": "其他",
-    "icon": "fa-stop-circle",
-    "href": "#",
     "spread": false,
     "children": [{
-        "title": "子窗体中打开选项卡",
-        "icon": "fa-github",
-        "href": "cop.html"
+        "title": "精选外卖",
+        "icon": "&#xe641;",
+        "href": "javascript:;"
     }]
 }];

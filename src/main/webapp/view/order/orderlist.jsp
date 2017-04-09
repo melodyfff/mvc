@@ -26,9 +26,11 @@
                         <div class="j-rest-outer rest-outer transition hover">
                             <div data-title="${item.sellerName}" data-poiid="144934982538216290" class="restaurant"
                                  data-all="1" data-minpricelevel="2">
-                                <a class="rest-atag" id="forwardOrder"
-                                   href="${pageContext.request.contextPath}/order/main?sellerId=${item.sellerId}&userId=${userid}"
-                                   target="_blank">
+                                <c:if test="${not empty userid}">
+                                    <a class="rest-atag" id="forwardOrder"
+                                       href="${pageContext.request.contextPath}/order/main?sellerId=${item.sellerId}&userId=${userid}"
+                                       target="_blank">
+                                </c:if>
                                     <div class="top-content">
                                         <div class="preview">
                                             <img data-rid="${item.id}" data-index="0" class="scroll-loading"

@@ -50,7 +50,30 @@ layui.config({
             });
         }
         if(data.field.title == "周边外卖"){
-            $.get("http://localhost:8080/mvc/order/orderlist", function(data){
+			var id = $('#usersid').text();
+			console.log('id'+id);
+            $.get("http://localhost:8080/mvc/order/orderlist?id="+id, function(data){
+                $('.layui-tab-content').empty().append(data);
+            });
+        }
+        if(data.field.title == "校园外卖"){
+            var id = $('#usersid').text();
+            console.log('id'+id);
+            $.get("http://localhost:8080/mvc/order/orderlist?id="+id, function(data){
+                $('.layui-tab-content').empty().append(data);
+            });
+        }
+        if(data.field.title == "校园精选"){
+            var id = $('#usersid').text();
+            console.log('id'+id);
+            $.get("http://localhost:8080/mvc/order/orderlist?id="+id, function(data){
+                $('.layui-tab-content').empty().append(data);
+            });
+        }
+        if(data.field.title == "精选外卖"){
+            var id = $('#usersid').text();
+            console.log('id'+id);
+            $.get("http://localhost:8080/mvc/order/orderlist?id="+id, function(data){
                 $('.layui-tab-content').empty().append(data);
             });
         }

@@ -54,6 +54,11 @@ layui.config({
                 $('#content').empty().append(data);
             });
         }
+        if(data.field.title == "订单管理"){
+            $.get("http://localhost:8080/mvc/order/ordermanage", function(data){
+                $('#content').empty().append(data);
+            });
+        }
         console.log(data.field.title);
     });
 

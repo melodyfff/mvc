@@ -15,7 +15,12 @@ var navs = [{
     "title": "销售统计",
     "icon": "fa-stop-circle",
     "href": "https://www.baidu.com",
-    "spread": false
+    "spread": false,
+    "children": [{
+        "title": "订单管理",
+        "icon": "&#xe641;",
+        "href": "javascript:;"
+    }]
 }, {
     "title": "其他",
     "icon": "fa-stop-circle",

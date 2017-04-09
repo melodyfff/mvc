@@ -43,9 +43,14 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    /**
+     * 返回商品列表
+     * @param id
+     * @return
+     */
     @RequestMapping("/orderlist")
     @ResponseBody
-    public ModelAndView orderlist(@Param("id")String id){
+    public ModelAndView orderlist(@RequestParam("id")String id){
         logger.info("用户"+id+"--->进入商品选择页面");
 
         List<XSeller> sellers = sellerService.queryAll();
@@ -56,13 +61,19 @@ public class OrderController {
         return mav;
     }
 
+    /**
+     * 进入选择主页面
+     * @param sellerId
+     * @param userid
+     * @return
+     */
     @RequestMapping("/main")
     @ResponseBody
     public ModelAndView index(@RequestParam("sellerId")String sellerId,@RequestParam("userId")String userid){
         logger.info("用户"+userid+"--->进入商品选择页面");
 
         XUser xUser = userService.queryByUserId(Long.parseLong(userid));
-        XRole xRole = userService.queryById(Long.parseLong(userid));
+        XRole xRole = userService.queryById(xUser.getRoleId());
         List<SellerFoodType> foodTypes = foodService.querySellerFoodTypeBySellerId(Long.parseLong(sellerId));
         List<SellerFood> foods = foodService.querySellerFoodBySellerId(Long.parseLong(sellerId));
 
@@ -76,6 +87,20 @@ public class OrderController {
         return mav;
     }
 
+    //===============================================
+    //订单管理
+    //===============================================
+    @RequestMapping("/ordermanage")
+    public ModelAndView forwardOrderManage(){
+        ModelAndView mav = new ModelAndView("order/ordermanage");
+        return mav;
+    }
+
+    /**
+     * 新增订单
+     * @param orderList
+     * @return
+     */
     @RequestMapping("/addOrderList")
     @ResponseBody
     public JSONObject addOrderList(OrderList orderList){

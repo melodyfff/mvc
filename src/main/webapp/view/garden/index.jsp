@@ -97,6 +97,7 @@
                 <li class="layui-this">
                     <i class="fa fa-dashboard" aria-hidden="true"></i>
                     <cite>选餐面板</cite>
+                    <p id="usersid" style="display: none">${id}</p>
                 </li>
             </ul>
             <div class="layui-tab-content" style="min-height: 150px; padding: 5px 0 0 0;">
