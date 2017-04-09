@@ -14,6 +14,7 @@
 
 <body class="beg-login-bg">
 <div class="beg-login-box">
+    <p id="updateinfo" style="display: none">1</p>
     <header>
         <h1><b>KMU</b>登录</h1>
     </header>
@@ -32,14 +33,21 @@
                 <input type="password" name="passWord" required  lay-verify="required" lay-verify="password" autocomplete="off" placeholder="这里输入密码" class="layui-input">
             </div>
             <div class="layui-form-item">
+                <label class="beg-login-icon">
+                    <i class="layui-icon">&#xe642;</i>
+                </label>
+                <input type="text" name="test" required  lay-verify="password" autocomplete="off" placeholder="请输入验证码" class="layui-input">
+            </div>
+            <div class="layui-form-item">
                 <div class="beg-pull-left beg-login-remember">
-                    <label>记住帐号？</label>
-                    <input type="checkbox" name="rememberMe" value="true" lay-skin="switch" checked title="记住帐号">
+                    <img id="faker" src="http://passport.iqiyi.com/register/vcode.php?r=0.39864017472397695">
+                    <label><a href="javascript:;" id="register"><p style="color: #5FB878">还没帐号？</p></a></label>
                 </div>
                 <div class="beg-pull-right">
                     <button class="layui-btn layui-btn-primary" lay-submit lay-filter="login">
                         <i class="layui-icon">&#xe650;</i> 登录
                     </button>
+
                 </div>
 
                 <div class="beg-clear"></div>
@@ -47,7 +55,7 @@
         </form>
     </div>
     <footer>
-        <p>计科13级 © 刘戬</p>
+        <p>计科13级 © 刘戬 </p>
     </footer>
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/layui/plugins/layui/layui.js"></script>
@@ -63,6 +71,31 @@
             <%--$.post('${pageContext.request.contextPath}/login/forwardMain',JSON.stringify(data.field));--%>
             document.getElementById("formid").submit()
             return false;
+        });
+        $(document).on('click','#faker',function () {
+            location.reload();
+        })
+        $(document).on('click','#register',function () {
+            //页面层-自定义
+            //iframe层-禁滚动条
+            layer.open({
+                type: 2,
+                title:'新增用户',
+                area: ['800px','60%'],
+                skin: 'layui-layer-rim', //加上边框
+                content: ['${pageContext.request.contextPath}/admin/register'],
+                cancel: function(){
+                    //右上角关闭回调
+                    $('#updateinfo').text(0);
+                    //return false 开启该代码可禁止点击该按钮关闭
+                },
+                end: function () {
+                    var info = $('#updateinfo').text();
+                    if(info!='0'){
+                    }
+                    $('#updateinfo').text(1);
+                }
+            });
         });
 
     });

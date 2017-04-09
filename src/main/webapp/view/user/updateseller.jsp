@@ -32,13 +32,13 @@
 
         <div class="layui-form-item">
             <label class="layui-form-label">商铺名</label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="text" name="sellerName" lay-verify="required" maxlength="20" value="${seller.sellerName}" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">商家LOGO地址URL</label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="text" name="sellerLogo" lay-verify="url|required" value="${seller.sellerLogo}" autocomplete="off" class="layui-input">
             </div>
         </div>

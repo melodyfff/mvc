@@ -65,6 +65,11 @@ public class SellerFoodServiceImpl implements SellerFoodService {
         return sellerFoodTypeDao.deleteSellerFoodType(sellerId, foodType);
     }
 
+    @Override
+    public int deleteSellerFoodTypeAll(long sellerId) {
+        return sellerFoodTypeDao.deleteSellerFoodTypeAll(sellerId);
+    }
+
     //===================================================
     //食物具体操作
     //===================================================
@@ -96,5 +101,10 @@ public class SellerFoodServiceImpl implements SellerFoodService {
     @Override
     public int deleteSellerFoodById(long id) {
         return sellerFoodDao.deleteSellerFoodById(id);
+    }
+
+    @Override
+    public int deleteSellerFoodAll(long sellerId) {
+        return sellerFoodDao.deleteSellerFoodAll(sellerId);
     }
 }

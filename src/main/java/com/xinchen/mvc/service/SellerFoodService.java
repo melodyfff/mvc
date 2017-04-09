@@ -52,6 +52,12 @@ public interface SellerFoodService {
      * @return
      */
     int deleteSellerFoodType(@Param("sellerId") long sellerId, @Param("foodType") String foodType);
+    /**
+     * 删除商家种类
+     * @param sellerId
+     * @return
+     */
+    int deleteSellerFoodTypeAll(long sellerId);
     //===================================================
     //食物具体操作
     //===================================================
@@ -95,4 +101,11 @@ public interface SellerFoodService {
      * @return
      */
     int deleteSellerFoodById(long id);
+
+    /**
+     * 删除商家食物
+     * @param sellerId
+     * @return
+     */
+    int deleteSellerFoodAll(long sellerId);
 }

@@ -3,11 +3,12 @@ package com.xinchen.mvc.service.Impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xinchen.mvc.controller.LoginController;
-import com.xinchen.mvc.dao.RoleDao;
-import com.xinchen.mvc.dao.UserDao;
+import com.xinchen.mvc.dao.*;
 import com.xinchen.mvc.dto.UserList;
 import com.xinchen.mvc.model.XRole;
+import com.xinchen.mvc.model.XSeller;
 import com.xinchen.mvc.model.XUser;
+import com.xinchen.mvc.service.SellerFoodService;
 import com.xinchen.mvc.service.UserService;
 import com.xinchen.mvc.utils.MD5Utils;
 import org.apache.log4j.Logger;
@@ -31,6 +32,12 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
     @Autowired
     private RoleDao roleDao;
+    @Autowired
+    private SellerDao sellerDao;
+    @Autowired
+    private SellerFoodTypeDao sellerFoodTypeDao;
+    @Autowired
+    private SellerFoodDao sellerFoodDao;
 
     /**
      * 根据名字查询用户
@@ -73,7 +80,9 @@ public class UserServiceImpl implements UserService {
      */
     public int insertUser(XUser user) {
         String un = user.getUsername();
-
+        if(user.getRoleId()==0){
+            user.setRoleId(2);
+        }
         if (userDao.queryUserSize(un) != 0) {
             logger.error("新建用户失败，用户已经存在");
             return 0;
@@ -99,11 +108,32 @@ public class UserServiceImpl implements UserService {
             System.out.println(temp.getPassword()+"  "+user.getPassword());
             user.setPassword(MD5Utils.getPwd(user.getPassword()));
         }
+        //从普通用户升级到商家
+        if(user.getRoleId()==3&&temp.getRoleId()==2){
+            XSeller seller = new XSeller();
+            seller.setSellerId(user.getId());
+            seller.setSellerName("新增商家，请尽快完善信息");
+            seller.setCreateTime(new Date());
+            sellerDao.insertSeller(seller);
+        }
+        //从商家降到用户
+        if(user.getRoleId()==2&&temp.getRoleId()==3){
+            sellerDao.deleteSeller(user.getId());
+            sellerFoodTypeDao.deleteSellerFoodTypeAll(user.getId());
+            sellerFoodDao.deleteSellerFoodAll(user.getId());
+        }
         return userDao.updateUser(user);
     }
 
     @Override
     public int deleteUser(long id) {
+        XUser temp = userDao.queryById(id);
+        //如果删除商家连带相关删除
+        if(temp.getRoleId()==3){
+            sellerDao.deleteSeller(id);
+            sellerFoodTypeDao.deleteSellerFoodTypeAll(id);
+            sellerFoodDao.deleteSellerFoodAll(id);
+        }
         return userDao.deleteUser(id);
     }
 

@@ -70,6 +70,16 @@ public class AdminController {
         return jsonStu;
     }
 
+    /**
+     * 跳转注册页面
+     * @return
+     */
+    @RequestMapping("register")
+    public ModelAndView forwardregisterUser(){
+        ModelAndView mav = new ModelAndView("user/register");
+        return mav;
+    }
+
     @RequestMapping("updateuserpage")
     public ModelAndView forwardUpdateUser(@Param("updateid") String updateid){
         XUser user = userService.queryByUserId(Long.parseLong(updateid));

@@ -49,4 +49,8 @@
     <delete id="deleteSellerFoodById" parameterType="long">
         delete from kmu_seller_food where id =  #{id}
     </delete>
+
+    <delete id="deleteSellerFoodAll" parameterType="long">
+        delete from kmu_seller_food where seller_id = #{sellerId}
+    </delete>
 </mapper>
