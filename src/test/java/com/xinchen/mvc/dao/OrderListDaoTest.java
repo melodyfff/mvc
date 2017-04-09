@@ -68,4 +68,15 @@ public class OrderListDaoTest {
         logger.info(orderListDao.deleteOrderList(2));
     }
 
+    @Test
+    public void fenye() throws Exception {
+//        String startTime = "2017-04-09 17:09:56";
+//        String endTime ="2017-04-09 19:32:38";
+        String startTime = "";
+        String endTime ="";
+        long sellerId=45;
+        long userId=0;
+        logger.info(orderListDao.queryAllOrderList(startTime,endTime,sellerId,userId));
+    }
+
 }

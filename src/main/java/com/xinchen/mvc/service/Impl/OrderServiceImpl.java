@@ -1,5 +1,7 @@
 package com.xinchen.mvc.service.Impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xinchen.mvc.dao.OrderListDao;
 import com.xinchen.mvc.model.OrderList;
 import com.xinchen.mvc.service.OrderService;
@@ -29,6 +31,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderList> queryOrderListByUserId(long id) {
         return orderListDao.queryOrderListByUserId(id);
+    }
+
+    @Override
+    public PageInfo<OrderList> queryAllOrderList(int start,String startTime, String endTime, long sellerId, long userId) {
+        PageHelper.startPage(start,10);
+        return new PageInfo<OrderList>(orderListDao.queryAllOrderList(startTime,endTime,sellerId,userId));
     }
 
     @Override

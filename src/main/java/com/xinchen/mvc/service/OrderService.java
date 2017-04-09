@@ -1,6 +1,8 @@
 package com.xinchen.mvc.service;
 
+import com.github.pagehelper.PageInfo;
 import com.xinchen.mvc.model.OrderList;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,6 +29,18 @@ public interface OrderService {
      */
     List<OrderList> queryOrderListByUserId(long id);
 
+    /**
+     * 分页查询订单详情
+     * @param startTime
+     * @param endTime
+     * @param sellerId
+     * @param userId
+     * @return
+     */
+    PageInfo<OrderList> queryAllOrderList(int start, String startTime,
+                                          String endTime,
+                                          long sellerId,
+                                          long userId);
     /**
      * 插入订单
      * @param orderList

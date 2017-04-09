@@ -1,6 +1,7 @@
 package com.xinchen.mvc.dao;
 
 import com.xinchen.mvc.model.OrderList;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public interface OrderListDao {
     /**
      * 根据ID查找订单
+     *
      * @param id
      * @return
      */
@@ -22,6 +24,7 @@ public interface OrderListDao {
 
     /**
      * 根据商家ID查询订单
+     *
      * @param id
      * @return
      */
@@ -29,13 +32,28 @@ public interface OrderListDao {
 
     /**
      * 根据用户ID查询订单
+     *
      * @param id
      * @return
      */
     List<OrderList> queryOrderListByUserId(long id);
 
     /**
+     * 分页查询订单详情
+     * @param startTime
+     * @param endTime
+     * @param sellerId
+     * @param userId
+     * @return
+     */
+    List<OrderList> queryAllOrderList(@Param("startTime") String startTime,
+                                      @Param("endTime") String endTime,
+                                      @Param("sellerId") long sellerId,
+                                      @Param("userId") long userId);
+
+    /**
      * 插入订单
+     *
      * @param orderList
      * @return
      */
@@ -43,6 +61,7 @@ public interface OrderListDao {
 
     /**
      * 修改订单
+     *
      * @param orderList
      * @return
      */
@@ -50,6 +69,7 @@ public interface OrderListDao {
 
     /**
      * 删除订单
+     *
      * @param id
      * @return
      */

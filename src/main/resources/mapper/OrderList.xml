@@ -21,6 +21,21 @@
         FROM kmu_order_list
         WHERE user_id = #{userId}
     </select>
+
+    <select id="queryAllOrderList" resultType="OrderList">
+        SELECT * from kmu_order_list a
+        where a.date between #{startTime} and #{endTime}
+        <if test="sellerId != 0">
+            AND  a.seller_id = #{sellerId}
+        </if>
+        <if test="userId != 0">
+            AND  a.user_id = #{userId}
+        </if>
+        ORDER BY a.id
+    </select>
+
+
+
     <insert id="insertOrderList">
         INSERT INTO kmu_order_list (seller_id,seller_name,user_id,user_name,phone,address,note,detail,price,state,date)
         VALUES (#{sellerId},#{sellerName},#{userId},#{userName},#{phone},#{address},#{note},#{detail},#{price},#{state},#{date})
