@@ -1,0 +1,414 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.xinchen.mvc</groupId>
+  <artifactId>mvc</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>mvc Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- spring版本号 -->
+    <spring.version>4.1.6.RELEASE</spring.version>
+    <spring-security.version>4.1.0.RELEASE</spring-security.version>
+    <!-- mybatis版本号 -->
+    <mybatis.version>3.2.8</mybatis.version>
+    <!-- log4j日志文件管理包版本 -->
+    <slf4j.version>1.6.6</slf4j.version>
+    <log4j.version>1.2.12</log4j.version>
+  </properties>
+
+  <dependencies>
+    <!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>servlet-api</artifactId>
+        <version>2.5</version> <scope>test</scope> scope=compile 的情况（默认compile），也就是说这个项目在编译、测试，运行阶段都需要这个artifact对应的jar包在classpath中
+        scope=provided ，则可以认为这个provided是目标容器已经provided这个artifact,它只影响到编译、测试阶段，运行阶段，假定目标容器已经提供了这个jar包
+        <scope>provided</scope> </dependency> -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
+
+    <!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+    <!-- Junit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+    </dependency>
+    <!-- 上传组件包 -->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.9</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+
+    <!-- 映入JSON -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.1.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-core-asl</artifactId>
+      <version>1.9.13</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-core-asl</artifactId>
+      <version>1.9.13</version>
+    </dependency>
+
+
+
+    <!-- 格式化对象，方便输出日志 -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.24</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>6.0.32</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- spring 核心包 -->
+    <!-- springframe start -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-oxm</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-content-support</artifactId>
+        <version>${spring.version}</version> </dependency> -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!-- springframe end -->
+
+    <!-- mybatis核心包 -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${mybatis.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mybatis.generator</groupId>
+      <artifactId>mybatis-generator-core</artifactId>
+      <version>1.3.2</version>
+    </dependency>
+
+    <!-- mybatis/spring包 -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+    <!--分页插件-->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>4.2.1</version>
+    </dependency>
+
+    <!--mysql驱动包 -->
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.38</version>
+    </dependency>
+
+
+    <!-- json数据 -->
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-asl</artifactId>
+      <version>1.9.13</version>
+    </dependency>
+
+    <!-- spring-security -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring-security.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring-security.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-taglibs</artifactId>
+      <version>${spring-security.version}</version>
+    </dependency>
+    <!-- 日志文件管理包 -->
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <!-- log end -->
+    <!-- jstl标签 -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5.2</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
+    <dependency>
+      <groupId>aopalliance</groupId>
+      <artifactId>aopalliance</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <!-- 加入ehcahe -->
+    <dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache-core</artifactId>
+      <version>2.6.6</version>
+    </dependency>
+    <!-- ehcache-web gzip filter -->
+    <dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache-web</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+
+  </dependencies>
+  <build>
+    <finalName>mvc</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
+     <!-- ProGuard混淆插件-->
+            <plugin>
+                <groupId>com.github.wvengen</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.0.11</version>
+                <executions>
+                    <execution>
+                        <!-- 混淆时刻，这里是打包的时候混淆-->
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 使用插件的什么功能，当然是混淆-->
+                            <goal>proguard</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- 是否将生成的PG文件安装部署-->
+                    <attach>true</attach>
+                    <!-- 是否混淆-->
+                    <obfuscate>true</obfuscate>
+                    <!-- 指定生成文件分类 -->
+                    <attachArtifactClassifier>pg</attachArtifactClassifier>
+                    <options>
+                        <!-- JDK目标版本1.7-->
+                        <option>-target 1.7</option>
+                        <!-- 不做收缩（删除注释、未被引用代码）-->
+                        <option>-dontshrink</option>
+                        <!-- 不做优化（变更代码实现逻辑）-->
+                        <option>-dontoptimize</option>
+                        <!-- 不路过非公用类文件及成员-->
+                        <option>-dontskipnonpubliclibraryclasses</option>
+                        <option>-dontskipnonpubliclibraryclassmembers</option>
+                        <!-- 优化时允许访问并修改有修饰符的类和类的成员 -->
+                        <option>-allowaccessmodification</option>
+                        <!-- 确定统一的混淆类的成员名称来增加混淆-->
+                        <option>-useuniqueclassmembernames</option>
+                        <!-- 不混淆所有包名，本人测试混淆后WEB项目问题实在太多，毕竟Spring配置中有大量固定写法的包名-->
+                        <option>-keeppackagenames</option>
+                        <!-- 不混淆所有特殊的类-->
+                        <option>-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,LocalVariable*Table,*Annotation*,Synthetic,EnclosingMethod</option>
+                        <!-- 不混淆所有的set/get方法，毕竟项目中使用的部分第三方框架（例如Shiro）会用到大量的set/get映射-->
+                        <option>-keepclassmembers public class * {void set*(***);*** get*();}</option>
+
+                        <!-- 不混淆job包下的所有类名，且类中的方法也不混淆-->
+                        <option>-keep class com.xinchen.mvc.dto.** { *; }</option>
+                        <option>-keep class com.xinchen.mvc.model.** { *; }</option>
+                        <!-- 不混淆filter包下的所有类名，这里主要是对Shiro的路踢人过滤器混淆，对类的属性和方法进行了混淆-->
+                        <!-- <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.filter.** </option> -->
+                        <!-- 不混淆凭证包下的所有类名，但对类中的属性、方法进行混淆，原因是Spring配置中用到了这个类名-->
+                        <!-- <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.credntials.** </option> -->
+                        <!-- 混淆目的同上，这个是拦截器的包，包中有防止重复提交的拦截器-->
+                        <!-- <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.interceptor.** </option> -->
+                        <!-- 混淆目的同上，这个是域包，包中有用户登录域-->
+                        <!-- <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.realm.** </option> -->
+                        <!-- 不混淆model包中的所有类以及类的属性及方法，实体包，混淆了会导致ORM框架及前端无法识别-->
+                        <!-- <option>-keep class com.chinatelecom.gz.wy.zhukun.shiro_spring.model.** {*;}</option> -->
+                        <!-- 以下两个包因为大部分是Spring管理的Bean，不对包类的类名进行混淆，但对类中的属性和方法混淆-->
+                        <option>-keep class com.xinchen.mvx.service.** </option>
+                        <option>-keep class com.xinchen.mvx.service.Impl.** </option>
+                        <option>-keep class com.xinchen.mvx.dao.**</option>
+                        <option>-keep class com.xinchen.mvx.dao.Impl.** </option>
+
+
+ <!--以下配置第三方包不参与混淆-->
+                 <option>-keepclassmembers class com.hopechart.dcroute.** { *;}</option>
+                 <option>-dontwarn com.hopechart.dcroute.**</option>
+                 <option>-keep class com.hopechart.dcroute.** {*;}</option>
+
+                 <option>-keepclassmembers class com.hopechart.cloud.** { *;}</option>
+                 <option>-dontwarn com.hopechart.cloud.**</option>
+                  <option>-keep class com.hopechart.cloud.** {*;}</option>
+
+                 <option>-keepclassmembers class com.hopechart.jcc.** { *;}</option>
+                 <option>-dontwarn com.hopechart.jcc.**</option>
+                 <option>-keep class com.hopechart.jcc.** {*;}</option>
+
+                 <option>-keepclassmembers class oracle.** { *;}</option>
+                 <option>-dontwarn oracle.**</option>
+                 <option>-keep class oracle.**</option>
+
+                 <option>-keepclassmembers class org.aopalliance.** { *;}</option>
+                 <option>-dontwarn org.aopalliance.**</option>
+                 <option>-keep class org.aopalliance.**</option>
+
+                 <option>-keepclassmembers class org.apache.commons.** { *;}</option>
+                 <option>-dontwarn org.apache.commons.**</option>
+                 <option>-keep class org.apache.commons.**</option>
+
+                 <option>-keepclassmembers class org.apache.log4j.** { *;}</option>
+                 <option>-dontwarn org.apache.log4j.**</option>
+                 <option>-keep class org.apache.log4j.**</option>
+
+                 <option>-keepclassmembers  class org.slf4j.** { *;}</option>
+                 <option>-dontwarn  org.slf4j.**</option>
+                 <option>-keep class org.slf4j.**</option>
+
+                 <option>-keepclassmembers class org.springframework.** { *;}</option>
+                 <option>-dontwarn  org.springframework.**</option>
+                 <option>-keep class org.springframework.**</option>
+
+                    </options>
+                    <outjar>${project.build.finalName}-pg.war</outjar>
+                    <!-- 添加依赖，这里你可以按你的需要修改，这里测试只需要一个JRE的Runtime包就行了 -->
+                    <libs>
+                        <lib>${java.home}/lib/rt.jar</lib>
+                    </libs>
+                    <!-- 加载文件的过滤器，就是你的工程目录了-->
+                    <inFilter>com/xinchen/**</inFilter>
+                    <!-- 对什么东西进行加载，这里仅有classes成功，毕竟你也不可能对配置文件及JSP混淆吧-->
+                    <injar>classes</injar>
+                    <!-- 输出目录-->
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                </configuration>
+            </plugin>
+    </plugins>
+  </build>
+</project>
