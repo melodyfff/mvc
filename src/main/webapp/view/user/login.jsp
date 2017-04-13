@@ -41,7 +41,7 @@
             <div class="layui-form-item">
                 <div class="beg-pull-left beg-login-remember">
                     <img id="faker" src="http://passport.iqiyi.com/register/vcode.php?r=0.39864017472397695">
-                    <label><a href="javascript:;" id="register"><p style="color: #5FB878">还没帐号？</p></a></label>
+                    <label><a href="javascript:;" id="register"><p style="color: #985f0d">还没帐号？</p></a></label>
                 </div>
                 <div class="beg-pull-right">
                     <button class="layui-btn layui-btn-primary" lay-submit lay-filter="login">

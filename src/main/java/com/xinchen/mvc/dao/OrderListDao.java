@@ -75,4 +75,10 @@ public interface OrderListDao {
      */
     int deleteOrderList(long id);
 
+    /**
+     * 修改订单状态
+     * @return
+     */
+    int updateOrderState(long id);
+
 }

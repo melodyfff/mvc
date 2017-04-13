@@ -98,6 +98,21 @@ public class OrderController {
         return mav;
     }
 
+
+    @RequestMapping("/orderInfo")
+    @ResponseBody
+    public ModelAndView forwardOrderInfo(@RequestParam("role")String role,@RequestParam("id") String id){
+        ModelAndView mav = new ModelAndView("order/orderInfo");
+        if(role.equals("商家")){
+            mav.addObject("sellerId",id);
+            mav.addObject("userId",0);
+        }else{
+            mav.addObject("sellerId",0);
+            mav.addObject("userId",id);
+        }
+        return mav;
+    }
+
     @RequestMapping("ordermanageMain")
     @ResponseBody
     public PageInfo forwardOrderManageMain(@RequestParam("curr") String curr,
@@ -122,6 +137,43 @@ public class OrderController {
         logger.info(orderList);
         int result = orderService.insertOrderList(orderList);
         String msg = "新增成功";
+        ResponseJson<OrderList> my = new ResponseJson<OrderList>();
+        my.setStatus(result);
+        my.setErrmsg(msg);
+        JSONObject jsonStu = (JSONObject) JSON.toJSON(my);
+        return jsonStu;
+    }
+
+
+    /**
+     * 修改订单状态
+     * @param id
+     * @return
+     */
+    @RequestMapping("/updateOrderListState")
+    @ResponseBody
+    public JSONObject addOrderListState(@RequestParam("id")long id){
+        int result = orderService.updateOrderState(id);
+        String msg = "新增成功";
+        logger.info("订单号："+id+"--->状态改变");
+        ResponseJson<OrderList> my = new ResponseJson<OrderList>();
+        my.setStatus(result);
+        my.setErrmsg(msg);
+        JSONObject jsonStu = (JSONObject) JSON.toJSON(my);
+        return jsonStu;
+    }
+
+    /**
+     * 删除订单
+     * @param id
+     * @return
+     */
+    @RequestMapping("/deleteOrderList")
+    @ResponseBody
+    public JSONObject deleteOrderList(@RequestParam("deleteid") long id){
+        int result = orderService.deleteOrderList(id);
+        String msg = "删除成功";
+        logger.info("订单"+id+"--->"+"删除成功");
         ResponseJson<OrderList> my = new ResponseJson<OrderList>();
         my.setStatus(result);
         my.setErrmsg(msg);

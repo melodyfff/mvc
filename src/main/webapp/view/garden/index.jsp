@@ -52,9 +52,9 @@
                         </a>
                     </li>
                 </c:if>
-                <li class="layui-nav-item">
+                <li class="layui-nav-item" id="orderInfo">
                     <a href="javascript:;">
-                        <i class="fa fa-tv" aria-hidden="true"></i>
+                        <i class="fa fa-tv"></i>
                         <cite>订单管理</cite>
                     </a>
                 </li>
@@ -98,6 +98,7 @@
                     <i class="fa fa-dashboard" aria-hidden="true"></i>
                     <cite>选餐面板</cite>
                     <p id="usersid" style="display: none">${id}</p>
+                    <p id="roletemp" style="display: none">${role}</p>
                 </li>
             </ul>
             <div class="layui-tab-content" style="min-height: 150px; padding: 5px 0 0 0;">
@@ -220,8 +221,37 @@
                 });
                 layer.full(index);
             });
-
-
+            $(document).off('click','#orderInfo').on("click",'#orderInfo',function () {
+                var userId = $('#usersid').text();
+                var sellerId=$('#sellerId').text();
+                var role = $('#roletemp').text();
+                layer.open({
+                    type: 2,
+                    title:'订单管理',
+                    area: ['80%','60%'],
+                    skin: 'layui-layer-rim', //加上边框
+                    content: ['${pageContext.request.contextPath}/order/orderInfo?id='+userId+'&role='+role],
+                    cancel: function(){
+                        //右上角关闭回调
+                        $('#updateinfo').text(0);
+                        $('#orderInfo').removeClass('layui-this');
+                        //return false 开启该代码可禁止点击该按钮关闭
+                    },
+                    end: function () {
+                        var info = $('#updateinfo').text();
+                        if(info!='0'){
+                            swal({
+                                title:"修改成功!",
+                                text:"信息已经修改!",
+                                type:"success"
+                            },function () {
+//                                location.reload();
+                            })
+                        }
+                        $('#updateinfo').text(1);
+                    }
+                });
+            });
 
         });
     </script>

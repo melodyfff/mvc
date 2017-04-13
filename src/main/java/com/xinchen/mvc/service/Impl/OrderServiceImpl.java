@@ -53,4 +53,9 @@ public class OrderServiceImpl implements OrderService {
     public int deleteOrderList(long id) {
         return orderListDao.deleteOrderList(id);
     }
+
+    @Override
+    public int updateOrderState(long id) {
+        return orderListDao.updateOrderState(id);
+    }
 }

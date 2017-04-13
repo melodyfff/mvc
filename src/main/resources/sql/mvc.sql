@@ -31,7 +31,7 @@ CREATE TABLE `kmu_order_list` (
   `detail` varchar(255) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `state` int(1) DEFAULT '0',
-  `date` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `date` timestamp NULL DEFAULT '2000-01-01 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 

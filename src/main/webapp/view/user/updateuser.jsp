@@ -13,8 +13,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/plugins/layui/css/layui.css" media="all"/>
     <style>
         #myuseradd{
-            width: 100%;
-
+            width: 700px;
+            margin: 0 auto;
+            padding-top: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+        }
+        .mybtn{
+            width: 500px;
+            margin-left: 160px;
+            padding-bottom: 20px;
         }
     </style>
 </head>
@@ -106,13 +114,7 @@
 
             </div>
         </div>
-
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                <button class="layui-btn" lay-submit="" lay-filter="submitadd">立即提交</button>
-            </div>
-        </div>
+                <button class="layui-btn mybtn" lay-submit="" lay-filter="submitadd">立即提交</button>
     </form>
 </div>
 <p id="callmsg">${msg}</p>

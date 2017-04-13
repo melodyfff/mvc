@@ -12,8 +12,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/plugins/layui/css/layui.css" media="all"/>
     <style>
         #myuseradd{
-            width: 100%;
-
+            width: 700px;
+            margin: 0 auto;
+            padding-top: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+        }
+        .mybtn{
+            width: 500px;
+            margin-left: 130px;
+            padding-bottom: 20px;
         }
     </style>
 </head>
@@ -34,37 +42,42 @@
     </div>
 
     <div class="layui-form-item">
-        <div class="layui-inline">
+        <div class="layui-block">
             <label class="layui-form-label">姓名</label>
-            <div class="layui-input-inline">
-                <input type="tel" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+            <div class="layui-input-block">
+                <input type="tel" name="name" lay-verify="required" placeholder="姓名" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-inline">
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-block">
             <label class="layui-form-label">地址</label>
-            <div class="layui-input-inline">
-                <input type="text" name="address" lay-verify="required" autocomplete="off" class="layui-input">
+            <div class="layui-input-block">
+                <input type="text" name="address" lay-verify="required" placeholder="地址" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-inline">
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-block">
             <label class="layui-form-label">手机号</label>
-            <div class="layui-input-inline">
-                <input type="tel" name="phone" lay-verify="phone" maxlength="11" autocomplete="off" class="layui-input">
+            <div class="layui-input-block">
+                <input type="tel" name="phone" lay-verify="phone" placeholder="手机" maxlength="11" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-inline">
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-block">
             <label class="layui-form-label">邮箱</label>
-            <div class="layui-input-inline">
-                <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+            <div class="layui-input-block">
+                <input type="text" name="email" placeholder="邮箱" lay-verify="email" autocomplete="off" class="layui-input">
             </div>
         </div>
-
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">角色</label>
         <div class="layui-input-block">
-            <select name="roleId" lay-filter="aihao">
+            <select name="roleId" lay-filter="aihao" >
                 <option value=""></option>
                 <option value="2">普通用户</option>
                 <option value="3">商家</option>
@@ -81,12 +94,7 @@
         </div>
     </div>
 
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            <button class="layui-btn" lay-submit="" lay-filter="submitadd">立即提交</button>
-        </div>
-    </div>
+            <button class="layui-btn mybtn" lay-submit="" lay-filter="submitadd">立即提交</button>
 </form>
 </div>
 <p id="callmsg">${msg}</p>

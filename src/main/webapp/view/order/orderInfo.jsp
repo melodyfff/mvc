@@ -1,50 +1,58 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/plugins/layui/css/layui.css" media="all"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/layui/plugins/layui/layui.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/sweetalert.css" media="all">
+    <script src="${pageContext.request.contextPath}/static/sweetalert.min.js"></script>
+</head>
+<body>
 <fieldset class="layui-elem-field layui-field-title">
     <legend>订单管理</legend>
+    <p id="sellerId" style="display: none">${sellerId}</p>
+    <p id="userId" style="display: none">${userId}</p>
 </fieldset>
 
 <div style="text-align: right"></div>
 <div class="layui-form">
-        <div class="" style="width: 800px">
-            <div class="layui-form-pane">
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <input class="layui-input" placeholder="开始日期" id="LAY_demorange_s" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
-                    </div>
-                    <div class="layui-inline">
-                        <input class="layui-input" placeholder="结束日期" id="LAY_demorange_e" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
-                    </div>
-                    <div class="layui-inline">
-                        <button class="layui-btn mybtn" id="searchdate">查询</button>
-                    </div>
+    <div class="" style="width: 800px">
+        <div class="layui-form-pane">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <input class="layui-input" placeholder="开始日期" id="LAY_demorange_s" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                </div>
+                <div class="layui-inline">
+                    <input class="layui-input" placeholder="结束日期" id="LAY_demorange_e" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn mybtn" id="searchdate"><i class="layui-icon">&#xe615;</i></button>
                 </div>
             </div>
         </div>
+    </div>
 
     <table class="layui-table">
         <colgroup>
             <col width="10">
-            <col width="10">
             <col width="150">
-            <col width="20">
-            <col width="150">
+            <col width="50">
             <col width="100">
             <col width="50">
             <col width="150">
-            <col width="150">
+            <col width="200">
+            <col width="100">
             <col width="50">
-            <col width="10">
-            <col width="150">
             <col width="150">
         </colgroup>
         <thead>
         <tr>
             <th>订单号</th>
-            <th>商家ID</th>
             <th>商铺名</th>
-            <th>用户ID</th>
             <th>姓名</th>
             <th>电话</th>
             <th>地址</th>
@@ -99,10 +107,10 @@
             if(endTime==''||endTime==null){
                 endTime=getMyDate(new Date()).replace('%',' ');
             }
-            if(sellerId==''||sellerId==null){
+            if(sellerId==''||sellerId==null||typeof(sellerId)=='undefined'){
                 sellerId==0;
             }
-            if(userId==''||userId==null){
+            if(userId==''||userId==null||typeof(userId)=='undefined'){
                 userId==0;
             }
             var result='';
@@ -111,9 +119,7 @@
                 var size = data.size;
                 for(var i = 0; i < size; i++){
                     var id = data.list[i].id;
-                    var sellerId = data.list[i].sellerId;
                     var sellerName = data.list[i].sellerName;
-                    var userId = data.list[i].userId;
                     var userName = data.list[i].userName;
                     var phone = data.list[i].phone;
                     var address = data.list[i].address;
@@ -123,9 +129,7 @@
                     var state = data.list[i].state;
                     var date = getMyDate(data.list[i].date);
                     result += '<tr><td>'+id+'</td>' +
-                        '<td>'+sellerId+'</td>' +
                         '<td>'+sellerName+'</td>'+
-                        '<td>'+userId+'</td>'+
                         '<td>'+userName+'</td>'+
                         '<td>'+phone+'</td>'+
                         '<td>'+address+'</td>'+
@@ -136,7 +140,7 @@
                         '<td>'+date+'</td>'+
                         '<td style="text-align: center">';
                     if(state==0){
-                        result +='<button class="layui-btn  layui-btn-small getit" id="getit"  getit="'+id+'">确认收货<i class="layui-icon">&#xe606;</i></button>' +
+                        result +='<button class="layui-btn  layui-btn-small getit" id="getit"  getit="'+id+'">已收到<i class="layui-icon">&#xe606;</i></button>' +
                             '<button class="layui-btn layui-btn-danger layui-btn-small" id="deletebtn" deleteid="'+id+'">删除<i class="layui-icon"></i></button></td></tr>';
                     }else{
                         result +='<button class="layui-btn layui-btn-danger layui-btn-small" id="deletebtn" deleteid="'+id+'">删除<i class="layui-icon"></i></button></td></tr>';
@@ -162,7 +166,9 @@
 
         //页面加载绑定事件
         $(document).ready(function () {
-            render(1,null,null,0,0);
+            var sellerId = $('#sellerId').text();
+            var userId = $('#userId').text();
+            render(1,null,null,sellerId,userId);
 
             $(document).off('click','#searchdate').on("click",'#searchdate',function(){
                 var startDate = $('#LAY_demorange_s').val();
@@ -170,8 +176,7 @@
                 if(startDate==''||endDate==''){
                     layer.msg("日期不能为空");
                 }else {
-                    console.log(new Date(startDate)>new Date(endDate));
-                    render(1,startDate,endDate,0,0);
+                    render(1,startDate,endDate,sellerId,userId);
                 }
 
 //                layer.msg(startDate+"-"+endDate);
@@ -211,7 +216,7 @@
                             text:"已成功删除数据！",
                             type:"success"
                         },function () {
-                            render(1,startDate,endDate,0,0);
+                            render(1,startDate,endDate,sellerId,userId);
                         })
 
                     }).error(function(data) {
@@ -257,7 +262,7 @@
                             text:"已成功收货！",
                             type:"success"
                         },function () {
-                            render(1,startDate,endDate,0,0);
+                            render(1,startDate,endDate,sellerId,userId);
                         })
 
                     }).error(function(data) {
@@ -268,6 +273,9 @@
             });
 
         });
-        console.log($('.state'));
+
+
     });
 </script>
+</body>
+</html>

@@ -45,6 +45,13 @@
         set seller_id=#{sellerId},seller_name=#{sellerName},user_id=#{userId},user_name=#{userName},phone=#{phone},address=#{address},note=#{note},detail=#{detail},price=#{price},state=#{state},date=#{date}
         where id = #{id}
     </update>
+
+    <update id="updateOrderState" parameterType="long">
+        UPDATE kmu_order_list
+        set state = 1
+        where id = #{id}
+    </update>
+
     <delete id="deleteOrderList" parameterType="long">
         delete from kmu_order_list where id = #{id}
     </delete>
