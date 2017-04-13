@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : mysql
-Source Server Version : 50614
-Source Host           : 127.0.0.1:3306
+Source Server Version : 50716
+Source Host           : localhost:3306
 Source Database       : mvc
 
 Target Server Type    : MYSQL
-Target Server Version : 50614
+Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2017-04-09 22:55:29
+Date: 2017-04-13 20:11:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,17 +33,37 @@ CREATE TABLE `kmu_order_list` (
   `state` int(1) DEFAULT '0',
   `date` timestamp NULL DEFAULT '2000-01-01 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of kmu_order_list
 -- ----------------------------
-INSERT INTO `kmu_order_list` VALUES ('4', '3', '东北小吃（新天地步行街店）', '3', '测试', '11111111111', '怡园A', '辣一点', '皇帝炒饭  ', '1998', '0', '2017-04-09 17:09:56');
-INSERT INTO `kmu_order_list` VALUES ('5', '3', '东北小吃（新天地步行街店）', '3', '测试', '11111111111', '怡园A', '怡园1栋1137', '皇帝炒饭  ', '999', '0', '2017-04-09 17:11:36');
-INSERT INTO `kmu_order_list` VALUES ('6', '3', '东北小吃（新天地步行街店）', '3', '测试3', '11111111111', '憬园B', '1137', '皇帝炒饭X1#皇帝米线X1#尊贵套X1#尊贵套二X1#', '3994', '0', '2017-04-09 17:13:21');
+INSERT INTO `kmu_order_list` VALUES ('4', '3', '东北小吃（新天地步行街店）', '3', '测试', '11111111111', '怡园A', '辣一点', '皇帝炒饭  ', '1998', '1', '2017-04-09 17:09:56');
+INSERT INTO `kmu_order_list` VALUES ('5', '3', '东北小吃（新天地步行街店）', '3', '测试', '11111111111', '怡园A', '怡园1栋1137', '皇帝炒饭  ', '999', '1', '2017-04-09 17:11:36');
+INSERT INTO `kmu_order_list` VALUES ('6', '3', '东北小吃（新天地步行街店）', '3', '测试3', '11111111111', '憬园B', '1137', '皇帝炒饭X1#皇帝米线X1#尊贵套X1#尊贵套二X1#', '3994', '1', '2017-04-09 17:13:21');
 INSERT INTO `kmu_order_list` VALUES ('7', '3', '东北小吃（新天地步行街店）', '43', '测试4', '11111111111', '怡园A', '', '皇帝炒饭X1#皇帝米线X1#尊贵套X1#尊贵套二X2#', '4992', '0', '2017-04-09 18:13:34');
 INSERT INTO `kmu_order_list` VALUES ('8', '3', '东北小吃（新天地步行街店）', '43', '123123', '11111111111', '憬园B', '', '皇帝米线X1#尊贵套二X1#', '1997', '0', '2017-04-09 18:14:08');
 INSERT INTO `kmu_order_list` VALUES ('9', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('10', '3', '东北小吃（新天地步行街店）', '3', '擦擦', '12222222222', '恬园C', '11111', '皇帝米线X1#尊贵套二X3#', '3993', '0', '2017-04-10 08:52:52');
+INSERT INTO `kmu_order_list` VALUES ('13', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('15', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('16', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('17', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('18', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('19', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('20', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('21', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('22', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('23', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('24', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('25', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('26', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('27', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('28', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('29', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('30', '45', '这是一个测试', '45', '123', '11111111111', '怡园A', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('31', '45', '这是一个测试22222', '45', '123', '11111111111', '怡园BBB', '', '测试X1#', '111', '0', '2017-04-09 19:32:38');
+INSERT INTO `kmu_order_list` VALUES ('33', '3', '东北小吃（新天地步行街店）', '50', '12312', '12333333333', '怡园A', '', '皇帝炒饭X1#皇帝米线X1#尊贵套X1#尊贵套二X1#', '3994', '1', '2017-04-13 18:57:55');
 
 -- ----------------------------
 -- Table structure for kmu_seller_food
@@ -183,7 +203,7 @@ CREATE TABLE `x_user` (
   `name` varchar(255) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`,`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of x_user
@@ -234,3 +254,4 @@ INSERT INTO `x_user` VALUES ('46', 'mytest5', 'e10adc3949ba59abbe56e057f20f883e'
 INSERT INTO `x_user` VALUES ('47', 'mytest7', 'e10adc3949ba59abbe56e057f20f883e', '2', '11111111111', '11', '1112@qq.com', '男', '111', '2017-04-09 19:02:25');
 INSERT INTO `x_user` VALUES ('48', 'test77', 'bbb8aae57c104cda40c93843ad5e6db8', '2', '12231111111', '123', '1@qq.com', '男', '123', '2017-04-09 19:03:23');
 INSERT INTO `x_user` VALUES ('49', 'mytest99', 'adbc91a43e988a3b5b745b8529a90b61', '2', '11111111111', '111111111111111', '111111@q.com', '男', '111111111111', '2017-04-09 19:05:07');
+INSERT INTO `x_user` VALUES ('50', 'mytest555', '1d7d79236fe5b6ba34b9c7ab1daa6a7d', '2', '11111111111', 'mytest555', 'mytest555@qw.com', '男', 'mytest555', '2017-04-13 17:24:12');
