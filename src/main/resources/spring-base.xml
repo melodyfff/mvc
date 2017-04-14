@@ -96,9 +96,12 @@
     <bean id="demoJobTrigger"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="demoJobDetail"/>
-        <property name="cronExpression" value="0/5 * * * * ?"/>
+        <!--<property name="cronExpression" value="0-0 0 0-23 * * ?"/>-->
+        <property name="cronExpression" value="0-0 52 0-23 * * ?"/>
     </bean>
 
+    <bean id="app" class="com.xinchen.mvc.utils.ApplicationUtil">
+         </bean>
 
     <!-- 事物 -->
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

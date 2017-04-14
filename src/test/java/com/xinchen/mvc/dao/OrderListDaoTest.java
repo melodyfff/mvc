@@ -1,6 +1,7 @@
 package com.xinchen.mvc.dao;
 
 import com.xinchen.mvc.model.OrderList;
+import com.xinchen.mvc.utils.DateUtils;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +10,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -72,11 +76,26 @@ public class OrderListDaoTest {
     public void fenye() throws Exception {
 //        String startTime = "2017-04-09 17:09:56";
 //        String endTime ="2017-04-09 19:32:38";
-        String startTime = "";
-        String endTime ="";
-        long sellerId=45;
-        long userId=0;
-        logger.info(orderListDao.queryAllOrderList(startTime,endTime,sellerId,userId));
+//        Date dt =new Date();
+//        String formatDate = null;
+//        DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
+//        formatDate = dFormat.format(dt);
+//        System.out.println(formatDate);
+
+
+        String startTime = "2000-01-01 00:00:00";
+
+        String endTime = DateUtils.getDateString(new Date());
+        long sellerId = 0;
+        long userId = 0;
+        List<OrderList> lists = orderListDao.queryAllOrderList(startTime, endTime, sellerId, userId);
+        for (OrderList i:lists) {
+            if(i.getState()==0){
+                i.setState(1);
+            }
+            orderListDao.updateOrderList(i);
+        }
+        logger.info(lists);
     }
 
 }
