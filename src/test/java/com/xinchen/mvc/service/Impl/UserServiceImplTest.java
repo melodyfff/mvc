@@ -31,4 +31,10 @@ public class UserServiceImplTest {
         System.out.println(userService.insertUser(xUser));
     }
 
+    @Test
+    public void query() throws Exception {
+
+        System.out.println(userService.queryByUserId(3));
+    }
+
 }

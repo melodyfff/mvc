@@ -24,6 +24,7 @@ public class OrderCheckJob implements Job {
     public void execute(JobExecutionContext context) throws JobExecutionException {
         OrderListDao OrderListDao = (OrderListDao) ApplicationUtil.getBean("orderListDao");
         //这里输入任务处理的内容
+        logger.info("**************************");
         logger.info("定时任务开始执行");
         String startTime = "2000-01-01 00:00:00";
 
@@ -39,6 +40,7 @@ public class OrderCheckJob implements Job {
             logger.info("订到号："+i.getId()+"--->状态修改成功");
         }
         logger.info("定时任务执行完毕");
+        logger.info("**************************");
     }
 
 }

@@ -99,9 +99,12 @@
         <!--<property name="cronExpression" value="0-0 0 0-23 * * ?"/>-->
         <property name="cronExpression" value="0-0 52 0-23 * * ?"/>
     </bean>
+    <!--环境获取工具-->
+    <bean class="com.xinchen.mvc.utils.ApplicationUtil">
+    </bean>
 
-    <bean id="app" class="com.xinchen.mvc.utils.ApplicationUtil">
-         </bean>
+    <!-- 自动扫描被@Aspect注解的bean-->
+    <aop:aspectj-autoproxy/>
 
     <!-- 事物 -->
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

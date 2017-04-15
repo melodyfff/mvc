@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
+ * spring bean 获取
  * Created by xinchen on 2017/4/15.
  */
 public class ApplicationUtil implements ApplicationContextAware {
