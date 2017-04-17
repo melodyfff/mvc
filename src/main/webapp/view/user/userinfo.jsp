@@ -69,7 +69,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-block">
-                <label class="layui-form-label">邮箱${user.id}</label>
+                <label class="layui-form-label">邮箱</label>
                 <div class="layui-input-block">
                     <input type="text" name="email" lay-verify="email" autocomplete="off" value="${user.email}" class="layui-input">
                 </div>

@@ -13,9 +13,18 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/sweetalert.css" media="all">
     <script src="${pageContext.request.contextPath}/static/sweetalert.min.js"></script>
     <style>
+        <style>
         #myuseradd{
-            width: 100%;
-
+            width: 700px;
+            margin: 0 auto;
+            padding-top: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+        }
+        .mybtn{
+            width: 500px;
+            margin-left: 130px;
+            padding-bottom: 20px;
         }
     </style>
 </head>
@@ -25,43 +34,49 @@
         <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
-                <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="用户名" class="layui-input">
+                <input type="text" name="username" lay-verify="title"  value="${user.username}" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">密码</label>
             <div class="layui-input-block">
-                <input type="text" name="password" lay-verify="required|pass" placeholder="密码" autocomplete="off" class="layui-input">
+                <input type="password" name="password" lay-verify="required|pass" placeholder="密码"  value="${user.password}" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
-            <div class="layui-inline">
+            <div class="layui-block">
                 <label class="layui-form-label">姓名</label>
-                <div class="layui-input-inline">
-                    <input type="tel" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+                <div class="layui-input-block">
+                    <input type="tel" name="name" lay-verify="required" value="${user.name}" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">地址</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="address" lay-verify="required" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">手机号</label>
-                <div class="layui-input-inline">
-                    <input type="tel" name="phone" lay-verify="phone" maxlength="11" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">邮箱</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-
         </div>
+        <div class="layui-form-item">
+            <div class="layui-block">
+                <label class="layui-form-label">地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="address" lay-verify="required" value="${user.address}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-block">
+                <label class="layui-form-label">手机号</label>
+                <div class="layui-input-block">
+                    <input type="tel" name="phone" lay-verify="phone" maxlength="11" value="${user.phone}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-block">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="email" lay-verify="email" autocomplete="off" value="${user.email}" class="layui-input">
+                </div>
+            </div>
+        </div>
+
 
         <div class="layui-form-item">
             <label class="layui-form-label">性别</label>
@@ -72,12 +87,7 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                <button class="layui-btn" lay-submit="" lay-filter="submitadd">立即提交</button>
-            </div>
-        </div>
+                <button class="layui-btn mybtn" lay-submit="" lay-filter="submitadd">立即提交</button>
     </form>
 </div>
 <p id="callmsg">${msg}</p>

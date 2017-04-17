@@ -81,7 +81,7 @@
             layer.open({
                 type: 2,
                 title:'新增用户',
-                area: ['800px','60%'],
+                area: ['80%','80%'],
                 skin: 'layui-layer-rim', //加上边框
                 content: ['${pageContext.request.contextPath}/admin/register'],
                 cancel: function(){
