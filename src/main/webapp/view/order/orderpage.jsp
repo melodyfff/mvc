@@ -83,7 +83,7 @@
     <!--锁屏模板 end -->
 </div>
 <br><br><br>
-<blockquote class="layui-elem-quote">
+<blockquote class="layui-elem-quote"z>
     <span><p><b>${seller.sellerName}</b></p></span>
     <span><p><b>起送价：￥${seller.startPrice}</b></p></span>
     <span><p><b>送达时间：${seller.sendTime}</b></p></span>
