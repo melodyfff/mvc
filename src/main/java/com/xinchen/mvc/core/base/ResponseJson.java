@@ -1,4 +1,4 @@
-package com.xinchen.mvc.base;
+package com.xinchen.mvc.core.base;
 
 import java.util.List;
 

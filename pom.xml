@@ -293,6 +293,13 @@
             <version>2.2.1</version>
         </dependency>
 
+        <!-- redis的jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>mvc</finalName>

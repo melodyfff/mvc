@@ -2,15 +2,13 @@ package com.xinchen.mvc.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.xinchen.mvc.base.ResponseJson;
+import com.xinchen.mvc.core.base.ResponseJson;
 import com.xinchen.mvc.model.*;
 import com.xinchen.mvc.service.OrderService;
 import com.xinchen.mvc.service.SellerFoodService;
 import com.xinchen.mvc.service.SellerService;
 import com.xinchen.mvc.service.UserService;
-import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

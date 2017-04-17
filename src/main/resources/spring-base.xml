@@ -2,19 +2,19 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:cache="http://www.springframework.org/schema/cache"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
                         http://www.springframework.org/schema/context
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd
-                        http://www.springframework.org/schema/mvc
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
                         http://www.springframework.org/schema/tx
                      	http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
                         http://www.springframework.org/schema/aop
-                     	http://www.springframework.org/schema/aop/spring-aop.xsd">
+                     	http://www.springframework.org/schema/aop/spring-aop.xsd
+                        http://www.springframework.org/schema/cache
+                        http://www.springframework.org/schema/cache/spring-cache.xsd">
     <!-- 自动扫描 --><!-- 启用注释驱动自动注入的功能 -->
     <context:component-scan base-package="com.xinchen.mvc"/>
 
@@ -99,6 +99,7 @@
         <!--<property name="cronExpression" value="0-0 0 0-23 * * ?"/>-->
         <property name="cronExpression" value="0-0 52 0-23 * * ?"/>
     </bean>
+
     <!--环境获取工具-->
     <bean class="com.xinchen.mvc.utils.ApplicationUtil">
     </bean>
@@ -106,11 +107,34 @@
     <!-- 自动扫描被@Aspect注解的bean-->
     <aop:aspectj-autoproxy/>
 
-    <!-- 事物 -->
+    <!--缓存ehcache-->
+    <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache.xml"/>
+    </bean>
+
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehcache"/>
+    </bean>
+    <!-- 启用缓存注解开关 -->
+    <cache:annotation-driven cache-manager="cacheManager"/>
+
+    <!-- 事物管理-->
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    <tx:annotation-driven transaction-manager="txManager"/>
+    <aop:config>
+        <aop:pointcut id="ServiceMethods"
+                      expression="execution(* com.xinchen.mvc.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="ServiceMethods"/>
+    </aop:config>
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="load*" read-only="true"/>
+            <tx:method name="*" rollback-for="Exception"/>
+        </tx:attributes>
+    </tx:advice>
+
 
     <!--配置扫描DAO接口包，动态实现DAO接口，并注入到spring容器中-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

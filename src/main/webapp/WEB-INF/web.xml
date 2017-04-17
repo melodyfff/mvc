@@ -57,16 +57,27 @@
     <!-- 此处可以可以配置成*.do，对应struts的后缀习惯 -->
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
+  <!-- spring security过滤器 -->
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+  <!--安全扫描-->
   <filter>
     <filter-name>RefererFilter</filter-name>
     <filter-class>com.xinchen.mvc.utils.CSRFfilter</filter-class>
   </filter>
-  
   <filter-mapping>
     <filter-name>RefererFilter</filter-name>
     <url-pattern>/person/getJson</url-pattern>
   </filter-mapping>
-  
   <welcome-file-list>
     <welcome-file>/view/index.jsp</welcome-file>
   </welcome-file-list>

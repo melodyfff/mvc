@@ -2,7 +2,7 @@ package com.xinchen.mvc.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xinchen.mvc.base.ResponseJson;
+import com.xinchen.mvc.core.base.ResponseJson;
 import com.xinchen.mvc.model.SellerFood;
 import com.xinchen.mvc.model.SellerFoodType;
 import com.xinchen.mvc.model.XSeller;

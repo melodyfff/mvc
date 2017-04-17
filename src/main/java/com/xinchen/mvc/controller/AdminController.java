@@ -2,10 +2,8 @@ package com.xinchen.mvc.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.xinchen.mvc.base.ResponseJson;
-import com.xinchen.mvc.dto.UserList;
+import com.xinchen.mvc.core.base.ResponseJson;
 import com.xinchen.mvc.model.XSeller;
 import com.xinchen.mvc.model.XUser;
 import com.xinchen.mvc.service.SellerService;
